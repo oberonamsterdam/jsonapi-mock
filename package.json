@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "bin": {
-        "jsonapi-mock": "./cli.js"
+        "jsonapi-mock": "./cli.js",
+        "jsonapi-node-server": "./app.js"
     },
     "repository": {
         "type": "git",
@@ -20,8 +21,20 @@
     },
     "homepage": "https://github.com/Thomas-X/jsonapi-mock#readme",
     "dependencies": {
+        "body-parser": "^1.18.1",
         "child-process-promise": "^2.2.1",
         "commander": "^2.11.0",
-        "jsonapi-node-server": "^1.0.5"
+        "cookie-parser": "~1.4.3",
+        "debug": "^2.6.9",
+        "eslint": "^4.7.2",
+        "eslint-config-oberon": "^1.1.2",
+        "express": "^4.15.4",
+        "hbs": "^4.0.1",
+        "jsonapi-serializer": "^3.5.5",
+        "lowdb": "^1.0.0",
+        "morgan": "~1.8.1",
+        "nodemon": "^1.12.1",
+        "serve-favicon": "^2.4.4",
+        "shortid": "^2.2.8"
     }
 }
