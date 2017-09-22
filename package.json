@@ -21,6 +21,7 @@
     "homepage": "https://github.com/Thomas-X/jsonapi-mock#readme",
     "dependencies": {
         "child-process-promise": "^2.2.1",
-        "commander": "^2.11.0"
+        "commander": "^2.11.0",
+        "jsonapi-node-server": "^1.0.5"
     }
 }
