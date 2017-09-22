@@ -1,6 +1,6 @@
 {
     "name": "jsonapi-mock",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A json-server inspired jsonapi mock server for your development needs.",
     "main": "cli.js",
     "scripts": {
