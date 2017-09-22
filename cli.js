@@ -15,8 +15,6 @@ program
 
 console.log(program.port, program.watch);
 
-// so dep of this cli should be jsonapi-node-server
-
 exec(`jsonapi-node-server PORT=3004 WATCH='db.json'`)
     .then(function (result) {
         const stdout = result.stdout;
