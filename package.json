@@ -1,0 +1,26 @@
+{
+    "name": "jsonapi-mock",
+    "version": "1.0.0",
+    "description": "A json-server inspired jsonapi mock server for your development needs.",
+    "main": "cli.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": {
+        "jsonapi-mock": "./cli.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Thomas-X/jsonapi-mock.git"
+    },
+    "author": "Thomas Zwarts",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Thomas-X/jsonapi-mock/issues"
+    },
+    "homepage": "https://github.com/Thomas-X/jsonapi-mock#readme",
+    "dependencies": {
+        "child-process-promise": "^2.2.1",
+        "commander": "^2.11.0"
+    }
+}
