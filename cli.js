@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 const program = require('commander');
+const chalk = require('chalk');
+const oberon = require('./oberon');
 const exec = require('child-process-promise').exec;
 
 program
@@ -13,7 +10,15 @@ program
     .option('-w, --watch [value]', 'Watch a .json file to act as a DB')
     .parse(process.argv);
 
-console.log(program.port, program.watch);
+console.log(`
+
+    ${chalk.green(oberon)}
+    
+    ${chalk.green('==================')}
+
+    ${chalk.bold.cyanBright(`Running the server on ${program.port || 3004} and watching ${program.watch || 'db.json'}`)} 
+
+`);
 
 exec(`jsonapi-node-server PORT=3004 WATCH='db.json'`)
     .then(function (result) {

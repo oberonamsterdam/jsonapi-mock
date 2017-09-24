@@ -35,6 +35,7 @@
         "morgan": "~1.8.1",
         "nodemon": "^1.12.1",
         "serve-favicon": "^2.4.4",
-        "shortid": "^2.2.8"
+        "shortid": "^2.2.8",
+        "chalk": "latest"
     }
 }
