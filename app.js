@@ -13,6 +13,7 @@ const db = low(adapter);
 const fs = require('fs');
 const shortid = require('shortid');
 const http = require('http');
+const chalk = require('chalk');
 const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 // routes
-const json = JSON.parse(fs.readFileSync('db.json', 'utf8'));
+const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE, 'utf8'));
 const routes = Object.keys(json);
 
 routes.map((route) => {
@@ -166,13 +167,11 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.jsonp(errors);
 });
-
-// get port from somewhere??
-const port = 3004;
+const port = process.env.PORT || 3004;
 app.set('port', port);
 http.createServer(app)
     .on('error', onError)
-    .on('listening', () => console.log(`Hi world, I'm running on port: ${port}`))
+    .on('listening', () => console.log(chalk.bold.cyanBright(`API is up and running on port ${port}`)))
     .listen(port);
 
 function onError (error) {

@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 const program = require('commander');
 const chalk = require('chalk');
-const oberon = require('./oberon');
-const exec = require('child-process-promise').exec;
+const { spawn } = require('child_process');
+const fileWatch = require('node-watch');
+const fs = require('fs');
+const jsonlint = require('jsonlint');
+const clear = require('clear');
 
 program
     .version('1.0.3')
@@ -10,23 +13,44 @@ program
     .option('-w, --watch [value]', 'Watch a .json file to act as a DB')
     .parse(process.argv);
 
-console.log(`
+const port = program.port || 3004;
+const watch = program.watch || 'db.json';
+const watchDir = process.cwd() + '/' + watch;
 
-    ${chalk.green(oberon)}
-    
-    ${chalk.green('==================')}
-
-    ${chalk.bold.cyanBright(`Running the server on ${program.port || 3004} and watching ${program.watch || 'db.json'}`)} 
-
+// functions
+const getJSONData = () => fs.readFileSync(watchDir, { encoding: 'utf-8' });
+const errorMessage = (text) => chalk.white.bgRed(text);
+const validateJSON = (json) => {
+    try {
+        jsonlint.parse(json);
+        return true;
+    } catch (e) {
+        clear();
+        console.log(`
+${errorMessage(e.name)}
+        
+${e.message}
 `);
+        return null;
+    }
+};
 
-exec(`jsonapi-node-server PORT=3004 WATCH='db.json'`)
-    .then(function (result) {
-        const stdout = result.stdout;
-        const stderr = result.stderr;
-        console.log('stdout: ', stdout);
-        console.log('stderr: ', stderr);
-    })
-    .catch(function (err) {
-        console.error('ERROR: ', err);
-    });
+// watcher
+fileWatch(watchDir, { recursive: false }, (e, name) => {
+    if (e === 'remove') {
+        clear();
+        console.log(`
+        
+${errorMessage(`Couldn't read ${watch} because it got removed!`)}
+
+        `);
+    }
+});
+
+if(validateJSON(getJSONData())) {
+    clear();
+    const child = spawn(`jsonapi-node-server PORT=${port} WATCHFILE="${watchDir}"`);
+    child.stdout.on('data', data => console.log(String(data)));
+    child.stderr.on('data', data => console.log(String(data)));
+    child.on('close', code => console.log(String(code)));
+}

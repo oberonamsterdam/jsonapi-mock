@@ -22,20 +22,23 @@
     "homepage": "https://github.com/Thomas-X/jsonapi-mock#readme",
     "dependencies": {
         "body-parser": "^1.18.1",
+        "chalk": "latest",
         "child-process-promise": "^2.2.1",
+        "clear": "0.0.1",
         "commander": "^2.11.0",
-        "cookie-parser": "~1.4.3",
+        "cookie-parser": "^1.4.3",
         "debug": "^2.6.9",
         "eslint": "^4.7.2",
         "eslint-config-oberon": "^1.1.2",
         "express": "^4.15.4",
         "hbs": "^4.0.1",
         "jsonapi-serializer": "^3.5.5",
+        "jsonlint": "^1.6.2",
         "lowdb": "^1.0.0",
-        "morgan": "~1.8.1",
+        "morgan": "^1.8.2",
+        "node-watch": "^0.5.5",
         "nodemon": "^1.12.1",
         "serve-favicon": "^2.4.4",
-        "shortid": "^2.2.8",
-        "chalk": "latest"
+        "shortid": "^2.2.8"
     }
 }
