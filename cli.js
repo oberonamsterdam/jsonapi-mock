@@ -49,7 +49,7 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
 
 if(validateJSON(getJSONData())) {
     clear();
-    const child = spawn(`jsonapi-node-server PORT=${port} WATCHFILE="${watchDir}"`);
+    const child = spawn(`PORT=${port} WATCHFILE=${watchDir} jsonapi-node-server`);
     child.stdout.on('data', data => console.log(String(data)));
     child.stderr.on('data', data => console.log(String(data)));
     child.on('close', code => console.log(String(code)));

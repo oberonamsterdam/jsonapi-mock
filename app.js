@@ -27,7 +27,8 @@ app.use((req, res, next) => {
 });
 
 // routes
-const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE, 'utf8'));
+
+const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 const routes = Object.keys(json);
 
 routes.map((route) => {
