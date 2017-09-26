@@ -58,6 +58,7 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
         child.on('close', code => console.log(String(code)));
     }
 } else if (!fs.existsSync(watchDir)) {
+    const sampleJson = require('./db.json');
     console.log(`
     
 ${errorMessage(`db.json file not found!`)}
@@ -65,4 +66,14 @@ ${errorMessage(`db.json file not found!`)}
     ${chalk.green.bold(`Generating one with sample data for you. :)`)}
     
     `);
+    fs.writeFileSync(watchDir, sampleJson, (err) => {
+        if(err) {
+            return console.log(err);
+        }
+        console.log(`
+        
+        ${chalk.green.bold(`Generated sample db.json!`)}
+        
+        `)
+    })
 }
