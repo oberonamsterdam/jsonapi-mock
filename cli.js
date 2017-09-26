@@ -34,23 +34,32 @@ ${e.message}
         return null;
     }
 };
-
-// watcher
-fileWatch(watchDir, { recursive: false }, (e, name) => {
-    if (e === 'remove') {
-        clear();
-        console.log(`
+if (fs.existsSync(watchDir)) {
+    // watcher
+    fileWatch(watchDir, { recursive: false }, (e, name) => {
+        if (e === 'remove') {
+            clear();
+            console.log(`
         
 ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
 
         `);
+        }
+    });
+    // init server
+    if (validateJSON(getJSONData())) {
+        clear();
+        const child = spawn(`PORT=${port} WATCHFILE=${watchDir} jsonapi-node-server`);
+        child.stdout.on('data', data => console.log(String(data)));
+        child.stderr.on('data', data => console.log(String(data)));
+        child.on('close', code => console.log(String(code)));
     }
-});
-
-if(validateJSON(getJSONData())) {
-    clear();
-    const child = spawn(`PORT=${port} WATCHFILE=${watchDir} jsonapi-node-server`);
-    child.stdout.on('data', data => console.log(String(data)));
-    child.stderr.on('data', data => console.log(String(data)));
-    child.on('close', code => console.log(String(code)));
+} else if (!fs.existsSync(watchDir)) {
+    console.log(`
+    
+${errorMessage(`db.json file not found!`)}
+    
+    ${chalk.green.bold(`Generating one with sample data for you. :)`)}
+    
+    `);
 }
