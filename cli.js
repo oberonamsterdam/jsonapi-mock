@@ -34,6 +34,16 @@ ${e.message}
         return null;
     }
 };
+const spawnNodeServer = () => {
+    clear();
+    const env = Object.create(process.env);
+    env.PORT = port;
+    env.WATCHFILE = watchDir;
+    const child = spawn(`jsonapi-node-server`, [], { env: env});
+    child.stdout.on('data', data => console.log(String(data)));
+    child.stderr.on('data', data => console.log(String(data)));
+    child.on('close', code => console.log(String(code)));
+};
 if (fs.existsSync(watchDir)) {
     // watcher
     fileWatch(watchDir, { recursive: false }, (e, name) => {
@@ -48,14 +58,7 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
     });
     // init server
     if (validateJSON(getJSONData())) {
-        clear();
-        const env = Object.create(process.env);
-        env.PORT = port;
-        env.WATCHFILE = watchDir;
-        const child = spawn(`jsonapi-node-server`, [], { env: env});
-        child.stdout.on('data', data => console.log(String(data)));
-        child.stderr.on('data', data => console.log(String(data)));
-        child.on('close', code => console.log(String(code)));
+        spawnNodeServer();
     }
 } else if (!fs.existsSync(watchDir)) {
     const sampleJson = require('./db.json');
@@ -74,6 +77,7 @@ ${errorMessage(`db.json file not found!`)}
         
         ${chalk.green.bold(`Generated sample db.json!`)}
         
-        `)
+        `);
+        spawnNodeServer();
     })
 }

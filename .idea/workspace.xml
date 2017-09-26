@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="477d7e5c-de91-4e69-8488-7cc764c6d262" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cli.js" afterPath="$PROJECT_DIR$/cli.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,8 +29,8 @@
       <file leaf-file-name="cli.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cli.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="60" column="44" lean-forward="false" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+            <state relative-caret-position="524">
+              <caret line="79" column="11" lean-forward="false" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -229,7 +228,7 @@
       <updated>1506092499033</updated>
       <workItem from="1506092500303" duration="4158000" />
       <workItem from="1506333552986" duration="12420000" />
-      <workItem from="1506409481395" duration="2554000" />
+      <workItem from="1506409481395" duration="2755000" />
     </task>
     <task id="LOCAL-00001" summary="more message logging">
       <created>1506242120183</created>
@@ -242,7 +241,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19132000" />
+    <option name="totallyTimeSpent" value="19333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="798" extended-state="6" />
@@ -382,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cli.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="60" column="44" lean-forward="false" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+        <state relative-caret-position="524">
+          <caret line="79" column="11" lean-forward="false" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
           <folding />
         </state>
       </provider>
