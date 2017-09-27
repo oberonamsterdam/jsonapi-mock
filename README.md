@@ -27,11 +27,11 @@ I searched for days to find a good and dead simple jsonapi mock server, all of t
 If you find something that you think should be in the project or want to have a go at contributing, open an issue or make a PR!
 
 # To do
-  *query operators on routes, sorting etc
-  *nested routes
-  *better status code responses compliant to jsonapi spec
-  *use included and self links in responses aswell
-  *improve project structure
-  *keep improving docs
-  *add more examples in docs
-  *if header is not jsonapi compliant, return error with status code 415
++query operators on routes, sorting etc
++nested routes
++better status code responses compliant to jsonapi spec
++use included and self links in responses aswell
++improve project structure
++keep improving docs
++add more examples in docs
++if header is not jsonapi compliant, return error with status code 415
