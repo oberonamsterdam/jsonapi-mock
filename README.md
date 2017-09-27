@@ -11,7 +11,7 @@ Since I plan on updating this as much as possible, use `npx` instead of installi
 ```
 npx jsonapi-mock --port 3004 --watch db.json
 ```
-Run it in the directory of the .json file you want to use as a db (i.e, your project root), otherwise it'll generate a dummy one with some sample data. Make sure you're dummy data to start with is compliant with the jsonapi spec though, see `db.json` in this repo for more info on that.
+Run it in the directory of the .json file you want to use as a db (i.e, your project root), otherwise it'll generate a dummy one with some sample data. Make sure your dummy data is compliant with the jsonapi spec though, see `db.json` in this repo for more info on that.
 
 # Flags
 | Flag          | Description     |  Default |
