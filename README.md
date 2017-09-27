@@ -30,7 +30,7 @@ Simple. The concept of this project is; Keep it simple *like* [json-server](http
 If you find something that you think should be in the project or want to have a go at contributing, open an issue or make a PR!
 
 # To do
-+ why this package above something that's more extensive than json-server?
++ why this package above something that's more extensive than json-server? ✅
 + check return values and status codes on different methods (PATCH, DELETE) etc..
 + query operators on routes, sorting etc
 + nested routes
