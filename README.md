@@ -32,7 +32,7 @@ If you find something that you think should be in the project or want to have a 
 + query operators on routes, sorting etc
 + nested routes
 + better status code responses compliant to jsonapi spec
-+ use included and self links in responses aswell
++ add links, relationships, included, self and meta support
 + improve project structure
 + keep improving docs
 + add more examples in docs
