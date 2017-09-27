@@ -78,6 +78,9 @@ ${errorMessage(`db.json file not found!`)}
         ${chalk.green.bold(`Generated sample db.json!`)}
         
         `);
+    });
+    // init server
+    if (validateJSON(getJSONData())) {
         spawnNodeServer();
-    })
+    }
 }
