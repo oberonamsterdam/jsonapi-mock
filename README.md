@@ -1,4 +1,6 @@
-<img src="https://raw.githubusercontent.com/Thomas-X/jsonapi-mock/master/jsonapi.jpg" align="center" alt="jsonapi mock"/>
+<div style="display:flex; justify-content:center; align-items:center;">
+  <img src="https://raw.githubusercontent.com/Thomas-X/jsonapi-mock/master/jsonapi.jpg"/>
+</div>
 
 Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
 
