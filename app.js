@@ -30,10 +30,17 @@ app.use((req, res, next) => {
 
 const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 const routes = Object.keys(json);
+const router = express.Router();
+const methods = {
+    get: 'get',
+    post: 'post',
+    patch: 'patch',
+    delete: 'delete',
+};
 
 routes.map((route) => {
-    app.get(`/${route}`, (req, res, next) => res.jsonp(json[route]));
-    app.post(`/${route}`, (req, res, next) => {
+    router[methods.get](`/${route}`, (req, res, next) => res.jsonp(json[route]));
+    router[methods.post](`/${route}`, (req, res, next) => {
         if (isValidPostValue(req.body)) {
             const id = shortid.generate();
 
@@ -54,7 +61,7 @@ routes.map((route) => {
             next();
         }
     });
-    app.get(`/${route}/:id`, (req, res, next) => {
+    router[methods.get](`/${route}/:id`, (req, res, next) => {
         const id = req.params.id;
         if (checkIfNotNull(id)) {
             const objValue = db.get(route).value();
@@ -74,7 +81,7 @@ routes.map((route) => {
             next();
         }
     });
-    app.patch(`/${route}/:id`, (req, res, next) => {
+    router[methods.patch](`/${route}/:id`, (req, res, next) => {
         const id = req.params.id;
         if (checkIfNotNull(id)) {
             if (checkIfNotNull(req.body.data.id) || checkIfNotNull(req.body.data.type)) {
@@ -93,7 +100,7 @@ routes.map((route) => {
             next();
         }
     });
-    app.delete(`/${route}/:id`, (req, res, next) => {
+    router[methods.delete](`/${route}/:id`, (req, res, next) => {
         const id = req.params.id;
         if (checkIfNotNull(id)) {
             db.get(`${route}.data`)
@@ -104,6 +111,7 @@ routes.map((route) => {
             next();
         }
     });
+    app.use('/', router);
 });
 
 const NotFoundhandler = (req, res, next) => {
@@ -172,7 +180,9 @@ const port = process.env.PORT || 3004;
 app.set('port', port);
 http.createServer(app)
     .on('error', onError)
-    .on('listening', () => console.log(chalk.bold.cyanBright(`API is up and running on port ${port}`)))
+    .on('listening', () => console.log(chalk.bold.cyanBright(`
+    API is up and running on port ${port}
+    `)))
     .listen(port);
 
 function onError (error) {
