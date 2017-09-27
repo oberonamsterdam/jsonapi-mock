@@ -62,9 +62,6 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
     }
 } else if (!fs.existsSync(watchDir)) {
     const sampleJson = require('./db.json');
-    console.log(sampleJson);
-    console.log(JSON.parse(sampleJson));
-    console.log(JSON.stringify(sampleJson));
     console.log(`
     
 ${errorMessage(`db.json file not found!`)}
