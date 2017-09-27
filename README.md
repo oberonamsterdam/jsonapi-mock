@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/Thomas-X/jsonapi-mock/master/jsonapi.jpg"/>
 </p>
 <br/> <br/>
-Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
+Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no [json-server](https://github.com/typicode/json-server) time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
 
 # Usage and 'installing'
 Since I plan on updating this as much as possible, use `npx` instead of installing it via `npm` globally. 
