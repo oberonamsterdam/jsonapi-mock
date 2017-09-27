@@ -27,6 +27,8 @@ I searched for days to find a good and dead simple jsonapi mock server, all of t
 If you find something that you think should be in the project or want to have a go at contributing, open an issue or make a PR!
 
 # To do
++ why this package above something that's more extensive than json-server?
++ check return values and status codes on different methods (PATCH, DELETE) etc..
 + query operators on routes, sorting etc
 + nested routes
 + better status code responses compliant to jsonapi spec
@@ -35,3 +37,4 @@ If you find something that you think should be in the project or want to have a 
 + keep improving docs
 + add more examples in docs
 + if header is not jsonapi compliant, return error with status code 415
++ add more fun stuff
