@@ -69,7 +69,7 @@ ${errorMessage(`db.json file not found!`)}
     ${chalk.green.bold(`Generating one with sample data for you. :)`)}
     
     `);
-    fs.writeFileSync(watchDir, JSON.stringify(sampleJson), (err) => {
+    fs.writeFileSync(watchDir, JSON.stringify(sampleJson, null, 4), (err) => {
         if(err) {
             return console.log(err);
         }
