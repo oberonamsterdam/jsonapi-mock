@@ -20,9 +20,11 @@ Run it in the directory of the .json file you want to use as a db (i.e, your pro
 | -w or --watch | watches a .json file to use as a db      | db.json |
 | -p or --port | what port the server should use      | 3004 |
 
-# Motivation and why
-I searched for days to find a good and dead simple jsonapi mock server, all of them required me to do all kinds of crazy stuff and learn their complicated API. I saw [json-server](https://github.com/typicode/json-server) and really liked the concept of just defining your routes and some sample data and you're good to go. <br />
-Why this over json-server? Simple. The concept of this project is; Keep it simple *like* [json-server](https://github.com/typicode/json-server, but with jsonapi support 
+# Motivation
+I searched for days to find a good and dead simple jsonapi mock server, all of them required me to do all kinds of crazy stuff and learn their complicated API. I saw [json-server](https://github.com/typicode/json-server) and really liked the concept of just defining your routes and some sample data and you're good to go.
+
+# Why? 
+Simple. The concept of this project is; Keep it simple *like* [json-server](https://github.com/typicode/json-server), but with jsonapi support and more neat features on top of [json-server](https://github.com/typicode/json-server).
 
 # Contributing
 If you find something that you think should be in the project or want to have a go at contributing, open an issue or make a PR!
