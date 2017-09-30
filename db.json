@@ -3,17 +3,17 @@
         "data": [
             {
                 "type": "posts",
-                "id": "elCapitan",
+                "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
                 "attributes": {
-                    "title": "My title",
-                    "description": "Whatever, yoo"
+                    "title": "My lorem ipsum title",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
                 }
             },
             {
                 "type": "posts",
-                "id": "S1DwPYUjb",
+                "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
                 "attributes": {
-                    "title": "My but a hello lit title",
+                    "title": "lorem",
                     "description": "Paving the road with my bikshed"
                 }
             }
@@ -22,8 +22,8 @@
     "magic": {
         "data": [
             {
-                "type": "magic",
-                "id": "1",
+                "type": "magics",
+                "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
                 "attributes": {
                     "title": "JSON API paints my bikeshed, with magic!"
                 }
