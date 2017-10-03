@@ -36,9 +36,9 @@ If you find something that you think should be in the project or want to have a 
 + nested routes
 + better status code responses compliant to jsonapi spec
 + add links, relationships, included, self and meta support
-+ improve project structure
++ improve project structure ✅
 + keep improving docs
 + add more examples in docs
-+ if header is not jsonapi compliant, return error with status code 415
++ if header is not jsonapi compliant, return error with status code 415 ✅
 + check if db.json is valid jsonapi.org spec on load
 + add more fun stuff
