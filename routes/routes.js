@@ -18,9 +18,9 @@ const checkIfNotNull = require('../services/Helpers').checkIfNotNull;
 const isLastItem = require('../services/Helpers').isLastItem;
 
 // data
+const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 const routes = Object.keys(json);
 const router = express.Router();
-const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 
 routes.map((route) => {
     router[methods.get](`/${route}`, (req, res, next) => res.jsonp(json[route]));

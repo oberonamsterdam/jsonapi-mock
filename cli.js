@@ -16,6 +16,7 @@ program
 const port = program.port || 3004;
 const watch = program.watch || 'db.json';
 const watchDir = process.cwd() + '/' + watch;
+let child = null;
 
 // functions
 const getJSONData = () => fs.readFileSync(watchDir, { encoding: 'utf-8' });
@@ -42,11 +43,17 @@ const spawnNodeServer = () => {
     const child = spawn(`jsonapi-node-server`, [], { env: env});
     child.stdout.on('data', data => console.log(String(data)));
     child.stderr.on('data', data => console.log(String(data)));
-    child.on('close', code => console.log(String(code)));
+    return child;
 };
 if (fs.existsSync(watchDir)) {
     // watcher
     fileWatch(watchDir, { recursive: false }, (e, name) => {
+        if(e === 'update') {
+            child.kill();
+            clear();
+            child = spawnNodeServer();
+        }
+
         if (e === 'remove') {
             clear();
             console.log(`
@@ -58,7 +65,7 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
     });
     // init server
     if (validateJSON(getJSONData())) {
-        spawnNodeServer();
+        child = spawnNodeServer();
     }
 } else if (!fs.existsSync(watchDir)) {
     const sampleJson = require('./db.json');
@@ -81,6 +88,6 @@ ${errorMessage(`db.json file not found!`)}
     });
     // init server
     if (validateJSON(getJSONData())) {
-        spawnNodeServer();
+        child = spawnNodeServer();
     }
 }
