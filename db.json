@@ -1,28 +1,67 @@
 {
-    "posts": {
-        "data": [
-            {
-                "type": "posts",
-                "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
-                "attributes": {
-                    "title": "My lorem ipsumm title",
-                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
+    "route:posts": {
+        "route:post": {
+            "data": [
+                {
+                    "type": "posts",
+                    "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
+                    "attributes": {
+                        "title": "My lorem ipsumm title",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
+                    }
+                },
+                {
+                    "type": "posts",
+                    "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
+                    "attributes": {
+                        "title": "lorem",
+                        "description": "Paving the road with my bikshed"
+                    }
                 }
-            },
-            {
-                "type": "posts",
-                "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
-                "attributes": {
-                    "title": "lorem",
-                    "description": "Paving the road with my bikshed"
-                }
-            }
-        ]
+            ]
+        }
     },
-    "magic": {
+    "route:magics": {
+        "route:magic": {
+            "route:magicsecond": {
+                "data": [
+                    {
+                        "type": "magics",
+                        "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
+                        "attributes": {
+                            "title": "JSON API paints my bikeshed, with magic!"
+                        }
+                    }
+                ]
+            },
+            "route:magicthird": {
+                "data": [
+                    {
+                        "type": "magics",
+                        "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
+                        "attributes": {
+                            "title": "JSON API paints my bikeshed, with magic!"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "stuffs": {
+        "route:magicthings": {
+            "data": [
+                {
+                    "type": "magics",
+                    "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
+                    "attributes": {
+                        "title": "JSON API paints my bikeshed, with magic!"
+                    }
+                }
+            ]
+        },
         "data": [
             {
-                "type": "magics",
+                "type": "stuffs",
                 "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
                 "attributes": {
                     "title": "JSON API paints my bikeshed, with magic!"

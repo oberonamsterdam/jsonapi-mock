@@ -28,9 +28,15 @@ app.use((req, res, next) => {
 // check header and pass error if not supported.
 app.all('*', (req, res, next) => {
     const contentType = req.header('Content-Type');
+    const accept = req.header('Accept');
     if (contentType !== Globals.contentType) {
         const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${Globals.contentType}`);
         err.status = 415;
+        next(err);
+    }
+    if (accept !== Globals.accept) {
+        const err = new Error(`Unacceptable Accept header.`);
+        err.status = 406;
         next(err);
     }
     next();
