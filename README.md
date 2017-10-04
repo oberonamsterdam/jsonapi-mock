@@ -7,9 +7,17 @@
 ### Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
 
 # Usage and 'installing'
-Since I plan on updating this as much as possible, use `npx` instead of installing it via `npm` globally. 
+Since I plan on updating this as much as possible, use `npx` instead of installing it via `npm` globally. You can use `npx` already if you have npm@^5.2.0.
 ```
 npx jsonapi-mock
+```
+OR (not recommended!)
+```
+npm install jsonapi-mock
+```
+Run this in your project folder
+```
+jsonapi-mock
 ```
 Run it in the directory of the .json file you want to use as a db (i.e, your project root), otherwise it'll generate a dummy one with some sample data. Make sure your dummy data is compliant with the jsonapi spec though, see `db.json` in this repo for more info on that.
 
