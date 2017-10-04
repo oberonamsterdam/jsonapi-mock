@@ -49,6 +49,22 @@ const removeNestedRoutes = (obj) => {
     });
     return objCopy;
 };
+const traverseThroughRoutes = (routes, resource) => {
+    if (routes.length === 0) {
+        return resource;
+    }
+    let resourceKeys = Object.keys(resource);
+    for (let idx = 0, len = resourceKeys.length; idx < len; idx++) {
+        for (let i = 0, length = routes.length; i < length; i++) {
+            if (resourceKeys[idx] === Globals.nestedRoutePrefix + routes[i]) {
+                // and remove the route we just found from the search list
+                // continue our search down the rabbit hole..
+                routes.splice(i, 1);
+                return traverseThroughRoutes(routes, resource[resourceKeys[idx]]);
+            }
+        }
+    }
+};
 // data
 // TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
 // TODO avoid server restart if post/patch/delete request is done
@@ -64,7 +80,7 @@ mainRoutes.map((route) => {
             const splittedRoutesKeyed = Object.keys(json[splittedRoutes[0]]);
             splittedRoutesKeyed.map((objKey, index) => {
                 if (isNested(objKey)) {
-                    const err = new Error(`Invalid JSON, did you nest a nested route with a non nested parent route? i.e myRoute -> route:myRoute`);
+                    const err = new Error(`Invalid JSON, did you nest a nested route with a non nested parent route? i.e myRoute -> route:myRoute2 INSTEAD OF DOING route:myRoute -> route:myRoute2?`);
                     err.status = 500;
                     foundNestedItem = true;
                     next(err);
@@ -74,6 +90,10 @@ mainRoutes.map((route) => {
             });
         } else if (splittedRoutes.length > 1) {
             // this route is nested!
+            let resource = traverseThroughRoutes(splittedRoutes, json);
+            console.log(resource);
+            resource = removeNestedRoutes(resource);
+            res.jsonp(resource);
         }
 
     });
