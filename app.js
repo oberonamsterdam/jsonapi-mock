@@ -5,10 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const jsonapiSerializer = require('jsonapi-serializer');
 const JSONAPIError = jsonapiSerializer.Error;
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
 const http = require('http');
 const Globals = require('./constants/Globals');
 const NotFoundhandler = require('./services/Helpers').NotFoundhandler;
@@ -22,8 +18,14 @@ app.use(cookieParser());
 app.use((req, res, next) => {
     res.header('Content-Type', Globals.contentType);
     res.header('Accept', Globals.contentType);
+    res.removeHeader('X-Powered-By');
     next();
 });
+
+// TODO investigate issue with body parser not playing along with custom content type header
+// still doesn't work:
+// app.use(bodyParser.json({ type: Globals.contentType }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 // check header and pass error if not supported.
 app.all('*', (req, res, next) => {
@@ -46,7 +48,6 @@ app.use(NotFoundhandler);
 // noinspection JSUnusedLocalSymbols because otherwise express doesn't recognise this as an error handler
 app.use((err, req, res, next) => {
     // serialize error
-    console.log(err.status);
     const errors = new JSONAPIError({
         code: err.status || 500,
         source: { 'pointer': `${err.stack}` },

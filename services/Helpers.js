@@ -43,6 +43,4 @@ module.exports = {
         err.status = 404;
         next(err);
     },
-
-
 };

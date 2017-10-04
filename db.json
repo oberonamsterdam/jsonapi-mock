@@ -1,81 +1,83 @@
 {
-    "route:posts": {
-        "route:post": {
-            "route:posts": {
-                "data": [
-                    {
-                        "type": "posts3",
-                        "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
-                        "attributes": {
-                            "title": "My lorem ipsumm title",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
-                        }
-                    },
-                    {
-                        "type": "posts3",
-                        "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
-                        "attributes": {
-                            "title": "lorem",
-                            "description": "Paving the road with my bikshed"
-                        }
-                    }
-                ]
-            },
-            "data": [
-                {
-                    "type": "posts",
-                    "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
-                    "attributes": {
-                        "title": "My lorem ipsumm title",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
-                    }
-                },
-                {
-                    "type": "posts",
-                    "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
-                    "attributes": {
-                        "title": "lorem",
-                        "description": "Paving the road with my bikshed"
-                    }
-                }
-            ]
-        }
-    },
-    "route:magics": {
-        "route:magic": {
-            "route:magicsecond": {
-                "data": [
-                    {
-                        "type": "magics",
-                        "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
-                        "attributes": {
-                            "title": "JSON API paints my bikeshed, with magic!"
-                        }
-                    }
-                ]
-            },
-            "route:magicthird": {
-                "data": [
-                    {
-                        "type": "magics",
-                        "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
-                        "attributes": {
-                            "title": "JSON API paints my bikeshed, with magic!"
-                        }
-                    }
-                ]
-            }
-        }
-    },
-    "stuffs": {
+  "route:posts": {
+    "route:post": {
+      "route:posts": {
         "data": [
-            {
-                "type": "stuffs",
-                "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
-                "attributes": {
-                    "title": "JSON API paints my bikeshed, with magic!"
-                }
+          {
+            "type": "posts3",
+            "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
+            "attributes": {
+              "title": "My lorem ipsumm title",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
             }
+          },
+          {
+            "type": "posts3",
+            "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
+            "attributes": {
+              "title": "lorem",
+              "description": "Paving the road with my bikshed"
+            }
+          }
         ]
+      },
+      "data": [
+        {
+          "type": "posts",
+          "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
+          "attributes": {
+            "title": "My lorem ipsumm title",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
+          }
+        },
+        {
+          "type": "posts",
+          "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
+          "attributes": {
+            "title": "lorem",
+            "description": "Paving the road with my bikshed"
+          }
+        }
+      ]
     }
+  },
+  "route:magics": {
+    "data": [
+      {
+        "type": "magicssssss",
+        "id": "cdd97f98-a5c5-11e7-abc4-ceca78b6b50a",
+        "attributes": {
+          "title": "My lorem ipsumm title",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
+        }
+      },
+      {
+        "type": "magicssssss",
+        "id": "cdd98240-a5c5-11e7-abc4-cec278i6b50a",
+        "attributes": {
+          "title": "lorem",
+          "description": "Paving the road with my bikshed"
+        }
+      },
+      {
+        "type": "magics",
+        "id": "345b7e10-a918-11e7-9041-f30973847822",
+        "attributes": {
+          "title": "My title",
+          "description": "show me potato salad!"
+        }
+      }
+    ]
+  },
+  "stuffs": {
+    "data": [
+      {
+        "type": "stuffs",
+        "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
+        "attributes": {
+          "title": "JSON API paints my bikeshed, with magic!"
+        }
+      }
+    ]
+  }
 }

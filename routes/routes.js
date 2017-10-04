@@ -1,7 +1,10 @@
 // modules
-const db = require('../constants/Methods');
 const uuidv1 = require('uuid/v1');
 
+const FileSync = require('lowdb/adapters/FileSync');
+const low = require('lowdb');
+const adapter = new FileSync(process.env.WATCHFILE || 'db.json');
+const db = low(adapter);
 const methods = require('../constants/Methods');
 const express = require('express');
 const fs = require('fs');
@@ -57,8 +60,8 @@ const traverseThroughRoutes = (routes, resource) => {
     for (let idx = 0, len = resourceKeys.length; idx < len; idx++) {
         for (let i = 0, length = routes.length; i < length; i++) {
             if (resourceKeys[idx] === Globals.nestedRoutePrefix + routes[i]) {
-                // and remove the route we just found from the search list
-                // continue our search down the rabbit hole..
+                // remove the route we just found from the search list
+                // and continue our search down the rabbit hole, keeping a reference of our recursive call
                 routes.splice(i, 1);
                 return traverseThroughRoutes(routes, resource[resourceKeys[idx]]);
             }
@@ -68,14 +71,18 @@ const traverseThroughRoutes = (routes, resource) => {
 // data
 // TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
 // TODO avoid server restart if post/patch/delete request is done
+// TODO This means having a fileWatcher (or move it) in app.js.
 const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 recursiveThroughRoutes(json);
 const router = express.Router();
 mainRoutes.map((route) => {
     router[methods.get](`/${route}`, (req, res, next) => {
         const splittedRoutes = route.split('/');
+        const parentIsPrefixed = Object.keys(json[Globals.nestedRoutePrefix + splittedRoutes[0]]);
+        // param route, splittedRoutes
         // this route isn't nested
-        if (splittedRoutes.length === 1) {
+
+        if (splittedRoutes.length === 1 && !parentIsPrefixed) {
             let foundNestedItem = false;
             const splittedRoutesKeyed = Object.keys(json[splittedRoutes[0]]);
             splittedRoutesKeyed.map((objKey, index) => {
@@ -88,36 +95,46 @@ mainRoutes.map((route) => {
                     res.jsonp(json[splittedRoutes[0]]);
                 }
             });
-        } else if (splittedRoutes.length > 1) {
+        } else if (splittedRoutes.length > 1 || parentIsPrefixed) {
             // this route is nested!
             let resource = traverseThroughRoutes(splittedRoutes, json);
             console.log(resource);
             resource = removeNestedRoutes(resource);
             res.jsonp(resource);
         }
-
     });
-    // router[methods.post](`/${route}`, (req, res, next) => {
-    //     if (isValidPostValue(req.body)) {
-    //         const id = uuidv1();
-    //
-    //         // push to db and write
-    //         db.get(`${route}.data`)
-    //             .push({
-    //                 type: route,
-    //                 id: id,
-    //                 attributes: req.body.data.attributes,
-    //             })
-    //             .write();
-    //
-    //         let newData = db.get(`${route}.data`).find({ id: id }).value();
-    //         if (newData) {
-    //             res.jsonp(wrapInDataKey(newData));
-    //         }
-    //     } else {
-    //         next();
-    //     }
-    // });
+    router[methods.post](`/${route}`, (req, res, next) => {
+        let splittedRoutes = route.split('/');
+        console.log(req.body);
+
+        if (isValidPostValue(req.body)) {
+            const id = uuidv1();
+            let routeReplaced = route.split('/');
+            routeReplaced.forEach((route, i) => routeReplaced[i] = Globals.nestedRoutePrefix + route);
+            routeReplaced = routeReplaced.join('.');
+
+            let type = splittedRoutes
+                .slice()
+                .pop();
+
+            // push to db and write
+            db.get(`${routeReplaced}.data`)
+                .push({
+                    type: type,
+                    id: id,
+                    attributes: req.body.data.attributes,
+                })
+                .write();
+            console.log(db.get(`${routeReplaced}.data`).value());
+
+            let newData = db.get(`${routeReplaced}.data`).find({ id: id }).value();
+            if (newData) {
+                res.jsonp(wrapInDataKey(newData));
+            }
+        } else {
+            next();
+        }
+    });
     // router[methods.get](`/${route}/:id`, (req, res, next) => {
     //     const id = req.params.id;
     //     if (checkIfNotNull(id)) {
@@ -169,5 +186,4 @@ mainRoutes.map((route) => {
     //     }
     // });
 });
-
 module.exports = router;
