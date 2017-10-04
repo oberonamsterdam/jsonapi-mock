@@ -43,6 +43,7 @@ app.all('*', (req, res, next) => {
 });
 app.use('/', router);
 app.use(NotFoundhandler);
+// noinspection JSUnusedLocalSymbols because otherwise express doesn't recognise this as an error handler
 app.use((err, req, res, next) => {
     // serialize error
     console.log(err.status);

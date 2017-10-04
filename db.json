@@ -48,17 +48,6 @@
         }
     },
     "stuffs": {
-        "route:magicthings": {
-            "data": [
-                {
-                    "type": "magics",
-                    "id": "cdd98704-a5c5-11e7-abc4-cec278b6b50a",
-                    "attributes": {
-                        "title": "JSON API paints my bikeshed, with magic!"
-                    }
-                }
-            ]
-        },
         "data": [
             {
                 "type": "stuffs",

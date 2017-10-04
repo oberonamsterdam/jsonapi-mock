@@ -24,43 +24,58 @@ const recursiveThroughRoutes = (routes, reference) => {
     const routesKeys = Object.keys(routes);
     routesKeys.map((subRoute) => {
         // if subroute is nested, go nest mode
-        if(isNested(subRoute)) {
+        if (isNested(subRoute)) {
             const subRouteReplaced = subRoute.replace(Globals.nestedRoutePrefix, '');
             let route = '';
-            if(reference) {
-                route =  `${reference}/${subRouteReplaced}`;
+            if (reference) {
+                route = `${reference}/${subRouteReplaced}`;
             } else {
-                route =  `${subRouteReplaced}`;
+                route = `${subRouteReplaced}`;
             }
             mainRoutes.push(route);
             recursiveThroughRoutes(routes[subRoute], route);
-        } else if(!reference) {
+        } else if (!reference) {
             // if subroute isn't nested, push it to the routes
             mainRoutes.push(`${subRoute}`);
         }
-    })
+    });
+};
+const removeNestedRoutes = (obj) => {
+    let objCopy = Object.assign(obj);
+    Object.keys(objCopy).forEach((objKey) => {
+        if (isNested(objKey)) {
+            delete objCopy[objKey];
+        }
+    });
+    return objCopy;
 };
 // data
+// TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
+// TODO avoid server restart if post/patch/delete request is done
 const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
 recursiveThroughRoutes(json);
 const router = express.Router();
 mainRoutes.map((route) => {
     router[methods.get](`/${route}`, (req, res, next) => {
         const splittedRoutes = route.split('/');
-
-        // TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
-        // TODO avoid server restart if post/patch/delete request is done
-
         // this route isn't nested
-        if(splittedRoutes.length === 1) {
-
-            res.jsonp(json[splittedRoutes[0]]);
+        if (splittedRoutes.length === 1) {
+            let foundNestedItem = false;
+            const splittedRoutesKeyed = Object.keys(json[splittedRoutes[0]]);
+            splittedRoutesKeyed.map((objKey, index) => {
+                if (isNested(objKey)) {
+                    const err = new Error(`Invalid JSON, did you nest a nested route with a non nested parent route? i.e myRoute -> route:myRoute`);
+                    err.status = 500;
+                    foundNestedItem = true;
+                    next(err);
+                } else if (isLastItem(index, Object.keys(splittedRoutesKeyed)) && !foundNestedItem) {
+                    res.jsonp(json[splittedRoutes[0]]);
+                }
+            });
         } else if (splittedRoutes.length > 1) {
             // this route is nested!
-
         }
 
-        res.jsonp(json[splittedRoutes.map((splitRoute) => json[splitRoute])]);
     });
     // router[methods.post](`/${route}`, (req, res, next) => {
     //     if (isValidPostValue(req.body)) {
