@@ -12,8 +12,8 @@ const onError = require('./services/Helpers').onError;
 const app = express();
 const router = require('./routes/routes');
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ type: Globals.contentType }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use((req, res, next) => {
     res.header('Content-Type', Globals.contentType);
@@ -21,11 +21,6 @@ app.use((req, res, next) => {
     res.removeHeader('X-Powered-By');
     next();
 });
-
-// TODO investigate issue with body parser not playing along with custom content type header
-// still doesn't work:
-// app.use(bodyParser.json({ type: Globals.contentType }));
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 // check header and pass error if not supported.
 app.all('*', (req, res, next) => {

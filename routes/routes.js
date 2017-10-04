@@ -43,6 +43,11 @@ const recursiveThroughRoutes = (routes, reference) => {
         }
     });
 };
+const addPrefix = (str) => Globals.nestedRoutePrefix + str;
+const addPrefixToRoutes = (routes) => {
+    routes.forEach((route, i) => routes[i] = addPrefix(route));
+    return routes;
+};
 const removeNestedRoutes = (obj) => {
     let objCopy = Object.assign(obj);
     Object.keys(objCopy).forEach((objKey) => {
@@ -77,12 +82,15 @@ recursiveThroughRoutes(json);
 const router = express.Router();
 mainRoutes.map((route) => {
     router[methods.get](`/${route}`, (req, res, next) => {
-        const splittedRoutes = route.split('/');
-        const parentIsPrefixed = Object.keys(json[Globals.nestedRoutePrefix + splittedRoutes[0]]);
+        let splittedRoutes = route.split('/');
         // param route, splittedRoutes
-        // this route isn't nested
 
-        if (splittedRoutes.length === 1 && !parentIsPrefixed) {
+        // if the top level json includes a nested route but no further nesting
+        if (Object.keys(json).includes(addPrefix(splittedRoutes[0]))) {
+            splittedRoutes = addPrefixToRoutes(splittedRoutes);
+        }
+        // this route isn't nested
+        if (splittedRoutes.length === 1) {
             let foundNestedItem = false;
             const splittedRoutesKeyed = Object.keys(json[splittedRoutes[0]]);
             splittedRoutesKeyed.map((objKey, index) => {
@@ -95,22 +103,21 @@ mainRoutes.map((route) => {
                     res.jsonp(json[splittedRoutes[0]]);
                 }
             });
-        } else if (splittedRoutes.length > 1 || parentIsPrefixed) {
+        } else if (splittedRoutes.length > 1) {
             // this route is nested!
+            console.log(splittedRoutes, json);
             let resource = traverseThroughRoutes(splittedRoutes, json);
-            console.log(resource);
             resource = removeNestedRoutes(resource);
             res.jsonp(resource);
         }
     });
     router[methods.post](`/${route}`, (req, res, next) => {
         let splittedRoutes = route.split('/');
-        console.log(req.body);
 
         if (isValidPostValue(req.body)) {
             const id = uuidv1();
             let routeReplaced = route.split('/');
-            routeReplaced.forEach((route, i) => routeReplaced[i] = Globals.nestedRoutePrefix + route);
+            routeReplaced = addPrefixToRoutes(routeReplaced);
             routeReplaced = routeReplaced.join('.');
 
             let type = splittedRoutes
@@ -132,7 +139,9 @@ mainRoutes.map((route) => {
                 res.jsonp(wrapInDataKey(newData));
             }
         } else {
-            next();
+            const err = new Error(`Invalid request body, check your POST params / what you are sending in the request`);
+            err.status = 400;
+            next(err);
         }
     });
     // router[methods.get](`/${route}/:id`, (req, res, next) => {
