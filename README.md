@@ -41,4 +41,5 @@ If you find something that you think should be in the project or want to have a 
 + add more examples in docs
 + if header is not jsonapi compliant, return error with status code 415 ✅
 + check if db.json is valid jsonapi.org spec on load
++ put all errors in errorIndex
 + add more fun stuff
