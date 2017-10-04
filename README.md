@@ -9,7 +9,7 @@
 # Usage and 'installing'
 Since I plan on updating this as much as possible, use `npx` instead of installing it via `npm` globally. 
 ```
-npx jsonapi-mock --port 3004 --watch db.json
+npx jsonapi-mock
 ```
 Run it in the directory of the .json file you want to use as a db (i.e, your project root), otherwise it'll generate a dummy one with some sample data. Make sure your dummy data is compliant with the jsonapi spec though, see `db.json` in this repo for more info on that.
 
