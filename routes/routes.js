@@ -1,6 +1,7 @@
 // modules
-const uuidv1 = require('uuid/v1');
+import { get } from '../handlers/index';
 
+const uuidv1 = require('uuid/v1');
 const FileSync = require('lowdb/adapters/FileSync');
 const low = require('lowdb');
 const adapter = new FileSync(process.env.WATCHFILE || 'db.json');
@@ -18,10 +19,6 @@ const JSONAPISerializer = jsonapiSerializer.Serializer;
 let mainRoutes = [];
 
 // funcs
-const isValidPostValue = require('../services/Helpers').isValidPostValue;
-const wrapInDataKey = require('../services/Helpers').wrapInDataKey;
-const checkIfNotNull = require('../services/Helpers').checkIfNotNull;
-const isLastItem = require('../services/Helpers').isLastItem;
 const isNested = (route) => route.indexOf(Globals.nestedRoutePrefix) !== -1;
 const recursiveThroughRoutes = (routes, reference) => {
     const routesKeys = Object.keys(routes);
@@ -43,36 +40,7 @@ const recursiveThroughRoutes = (routes, reference) => {
         }
     });
 };
-const addPrefix = (str) => Globals.nestedRoutePrefix + str;
-const addPrefixToRoutes = (routes) => {
-    routes.forEach((route, i) => routes[i] = addPrefix(route));
-    return routes;
-};
-const removeNestedRoutes = (obj) => {
-    let objCopy = Object.assign(obj);
-    Object.keys(objCopy).forEach((objKey) => {
-        if (isNested(objKey)) {
-            delete objCopy[objKey];
-        }
-    });
-    return objCopy;
-};
-const traverseThroughRoutes = (routes, resource) => {
-    if (routes.length === 0) {
-        return resource;
-    }
-    let resourceKeys = Object.keys(resource);
-    for (let idx = 0, len = resourceKeys.length; idx < len; idx++) {
-        for (let i = 0, length = routes.length; i < length; i++) {
-            if (resourceKeys[idx] === Globals.nestedRoutePrefix + routes[i]) {
-                // remove the route we just found from the search list
-                // and continue our search down the rabbit hole, keeping a reference of our recursive call
-                routes.splice(i, 1);
-                return traverseThroughRoutes(routes, resource[resourceKeys[idx]]);
-            }
-        }
-    }
-};
+
 // data
 // TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
 // TODO avoid server restart if post/patch/delete request is done
@@ -81,48 +49,19 @@ const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf
 recursiveThroughRoutes(json);
 const router = express.Router();
 mainRoutes.map((route) => {
-    router[methods.get](`/${route}`, (req, res, next) => {
-        let splittedRoutes = route.split('/');
-        // param route, splittedRoutes
-
-        // if the top level json includes a nested route but no further nesting
-        if (Object.keys(json).includes(addPrefix(splittedRoutes[0]))) {
-            splittedRoutes = addPrefixToRoutes(splittedRoutes);
-        }
-        // this route isn't nested
-        if (splittedRoutes.length === 1) {
-            let foundNestedItem = false;
-            const splittedRoutesKeyed = Object.keys(json[splittedRoutes[0]]);
-            splittedRoutesKeyed.map((objKey, index) => {
-                if (isNested(objKey)) {
-                    const err = new Error(`Invalid JSON, did you nest a nested route with a non nested parent route? i.e myRoute -> route:myRoute2 INSTEAD OF DOING route:myRoute -> route:myRoute2?`);
-                    err.status = 500;
-                    foundNestedItem = true;
-                    next(err);
-                } else if (isLastItem(index, Object.keys(splittedRoutesKeyed)) && !foundNestedItem) {
-                    res.jsonp(json[splittedRoutes[0]]);
-                }
-            });
-        } else if (splittedRoutes.length > 1) {
-            // this route is nested!
-            console.log(splittedRoutes, json);
-            let resource = traverseThroughRoutes(splittedRoutes, json);
-            resource = removeNestedRoutes(resource);
-            res.jsonp(resource);
-        }
-    });
+    router[methods.get](`/${route}`, (req, res, next) => get(req, res, next, route));
     router[methods.post](`/${route}`, (req, res, next) => {
         let splittedRoutes = route.split('/');
 
         if (isValidPostValue(req.body)) {
             const id = uuidv1();
-            let routeReplaced = route.split('/');
-            routeReplaced = addPrefixToRoutes(routeReplaced);
-            routeReplaced = routeReplaced.join('.');
-
+            const routeReplaced = replaceSlashWithDot(route);
             let type = splittedRoutes
                 .slice()
                 .pop();
+
+            // create data keyword if not exists.
+            createDataArrayIfNotExists(route);
 
             // push to db and write
             db.get(`${routeReplaced}.data`)
@@ -132,7 +71,6 @@ mainRoutes.map((route) => {
                     attributes: req.body.data.attributes,
                 })
                 .write();
-            console.log(db.get(`${routeReplaced}.data`).value());
 
             let newData = db.get(`${routeReplaced}.data`).find({ id: id }).value();
             if (newData) {
@@ -144,26 +82,37 @@ mainRoutes.map((route) => {
             next(err);
         }
     });
-    // router[methods.get](`/${route}/:id`, (req, res, next) => {
-    //     const id = req.params.id;
-    //     if (checkIfNotNull(id)) {
-    //         const objValue = db.get(route).value();
-    //         if (objValue.data && Array.isArray(objValue.data)) {
-    //             objValue.data.forEach((elem, index) => {
-    //                 if (checkIfNotNull(elem.id) && elem.id === id) {
-    //                     res.jsonp(wrapInDataKey(elem));
-    //                 } else if (isLastItem(index, objValue.data)) {
-    //                     next();
-    //                 }
-    //             });
-    //         } else {
-    //             next();
-    //         }
-    //     } else {
-    //         NotFoundhandler();
-    //         next();
-    //     }
-    // });
+    router[methods.get](`/${route}/:id`, (req, res, next) => {
+        const id = req.params.id;
+
+        console.log('IIIIIDDDDDDDD ', req.params.id, route);
+
+        const routeReplaced = replaceSlashWithDot(route);
+
+        // this means we have an ID the same as a route (which is not allowed, so this is OK)
+        // so we forward it to the next with route included
+        if (mainRoutes.includes(route)) {
+            next(route);
+        } else {
+            if (checkIfNotNull(id)) {
+                const objValue = db.get(`${routeReplaced}.data`).value();
+                if (objValue && Array.isArray(objValue)) {
+                    objValue.forEach((elem, index) => {
+                        if (checkIfNotNull(elem.id) && elem.id === id) {
+                            res.jsonp(wrapInDataKey(elem));
+                        } else if (isLastItem(index, objValue)) {
+                            next();
+                        }
+                    });
+                } else {
+                    next();
+                }
+            } else {
+                NotFoundhandler();
+                next();
+            }
+        }
+    });
     // router[methods.patch](`/${route}/:id`, (req, res, next) => {
     //     const id = req.params.id;
     //     if (checkIfNotNull(id)) {

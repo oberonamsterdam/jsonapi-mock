@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-const express = require('express');
+import express from 'express';
+
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
