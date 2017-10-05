@@ -46,6 +46,7 @@ If you find something that you think should be in the project or want to have a 
 + add links, relationships, included, self and meta support
 + improve project structure ✅
 + keep improving docs
++ add [faker](https://www.npmjs.com/package/faker) flag/possibility for faking data and generating all the dummy data you want
 + add more examples in docs
 + if header is not jsonapi compliant, return error with status code 415 ✅
 + check if db.json is valid jsonapi.org spec on load
