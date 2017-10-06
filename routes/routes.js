@@ -9,12 +9,13 @@ import { get, post, patch, remove, getWithParam } from '../handlers/index';
 // TODO This means having a fileWatcher (or move it) in app.js.
 const router = express.Router();
 
-mainRoutes.map((route) => {
-    router[methods.get](`/${route}`, (req, res, next) => get(req, res, next, route));
-    router[methods.post](`/${route}`, (req, res, next) => post(req, res, next, route));
-    router[methods.get](`/${route}/:id`, (req, res, next) => getWithParam(req, res, next, route));
-    router[methods.patch](`/${route}/:id`, (req, res, next) => patch(req, res, next, route));
-    router[methods.remove](`/${route}/:id`, (req, res, next) => remove(req, res, next, route));
+mainRoutes.map(({route}, i) => {
+    console.log(mainRoutes);
+    router[methods.get](`/${route}`, (req, res, next) => get(req, res, next, mainRoutes[i]));
+    router[methods.post](`/${route}`, (req, res, next) => post(req, res, next, mainRoutes[i]));
+    // router[methods.get](`/${route}/:id`, (req, res, next) => getWithParam(req, res, next, mainRoutes[i])); // maybe unify this into one handler?
+    router[methods.patch](`/${route}/:id`, (req, res, next) => patch(req, res, next, mainRoutes[i])); // remove :id param, should be in
+    router[methods.remove](`/${route}/:id`, (req, res, next) => remove(req, res, next, mainRoutes[i]));
 });
 
 export default router;

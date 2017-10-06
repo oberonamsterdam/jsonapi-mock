@@ -11,4 +11,4 @@ export const port = process.env.PORT || 3004;
 export const adapter = new FileSync(process.env.WATCHFILE || 'db.json');
 export const db = low(adapter);
 export const mainRoutes = [];
-recursiveThroughRoutes(json);
+recursiveThroughRoutes(json, null, []);

@@ -7,12 +7,14 @@ import {
 import { json } from '../constants/Globals';
 
 export const get = (req, res, next, route) => {
-    let splittedRoutes = route.split('/');
     // param route, splittedRoutes
 
-    console.log(splittedRoutes);
+    console.log(route);
+    res.jsonp(route);
 
-    //
+    // TODO rework this! This is not clean! some way of getting the reference to the object the route belongs to
+    // TODO either via recursiveThroughRoutes passing 2 arrays, one the routes we loop on, the other one containing objects with the reference to the
+    // TODO route-object.
 
     // // TODO simplify this and clean this up.
     //

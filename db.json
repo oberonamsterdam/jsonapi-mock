@@ -1,6 +1,26 @@
 {
     "route:posts": {
         "route:posts2": {
+            "route:posts3" : {
+                "data": [
+                    {
+                        "type": "posts3",
+                        "id": "cdd97f98-a5c5-11e7-abc4-cec278b6b50a",
+                        "attributes": {
+                            "title": "My lorem ipsumm title",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex finibus, commodo lacus vitae, congue purus. Nulla maximus vestibulum tincidunt. Nunc imperdiet urna sit amet urna efficitur maximus."
+                        }
+                    },
+                    {
+                        "type": "posts3",
+                        "id": "cdd98240-a5c5-11e7-abc4-cec278b6b50a",
+                        "attributes": {
+                            "title": "lorem",
+                            "description": "Paving the road with my bikshed"
+                        }
+                    }
+                ]
+            },
             "data": [
                 {
                     "type": "posts2",

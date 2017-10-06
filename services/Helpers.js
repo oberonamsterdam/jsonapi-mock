@@ -99,23 +99,46 @@ export const isNested = (route) => route.indexOf(Globals.nestedRoutePrefix) !== 
 
 // this is NOT a pure function and it changes a global variable, it should only
 // be called once on startup
-export const recursiveThroughRoutes = (routes, reference) => {
+export const recursiveThroughRoutes = (routes, reference, prefixedReference) => {
     const routesKeys = Object.keys(routes);
     routesKeys.map((subRoute) => {
         // if subroute is nested, go nest mode
         if (isNested(subRoute)) {
             const subRouteReplaced = subRoute.replace(Globals.nestedRoutePrefix, '');
-            let route = '';
+
+            const obj = {
+                route: '',
+                data: routes[subRoute],
+                routeWithPrefix: subRoute,
+                routes: prefixedReference,
+                isValid: true,
+            };
+
+            prefixedReference.push(subRoute);
+            prefixedReference.map((trueRoute) => {
+                if (trueRoute.indexOf(Globals.nestedRoutePrefix) !== -1) {
+                    obj.isValid = false;
+                }
+            });
+
             if (reference) {
-                route = `${reference}/${subRouteReplaced}`;
+                obj.route = `${reference}/${subRouteReplaced}`;
             } else {
-                route = `${subRouteReplaced}`;
+                obj.route = `${subRouteReplaced}`;
             }
-            mainRoutes.push(route);
-            recursiveThroughRoutes(routes[subRoute], route);
+            mainRoutes.push(obj);
+            recursiveThroughRoutes(routes[subRoute], obj.route, obj.routes);
         } else if (!reference) {
             // if subroute isn't nested, push it to the routes
-            mainRoutes.push(`${subRoute}`);
+            prefixedReference.push(subRoute);
+            const obj = {
+                data: routes[subRoute],
+                route: subRoute,
+                routeWithPrefix: subRoute,
+                routes: prefixedReference,
+                isValid: true,
+            };
+            mainRoutes.push(obj.route);
         }
     });
 };
