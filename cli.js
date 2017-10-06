@@ -48,7 +48,7 @@ const spawnNodeServer = () => {
 if (fs.existsSync(watchDir)) {
     // watcher
     fileWatch(watchDir, { recursive: false }, (e, name) => {
-        if(e === 'update') {
+        if (e === 'update') {
             child.kill();
             clear();
             child = spawnNodeServer();
@@ -77,7 +77,7 @@ ${errorMessage(`db.json file not found!`)}
     
     `);
     fs.writeFileSync(watchDir, JSON.stringify(sampleJson, null, 4), (err) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
         console.log(`

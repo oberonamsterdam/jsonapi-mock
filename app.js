@@ -1,24 +1,27 @@
 #! /usr/bin/env node
+/* eslint-disable no-unused-vars */
 import express from 'express';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import jsonapiSerializer from 'jsonapi-serializer';
+import http from 'http';
+import { globalContentType, globalAccept, port } from './constants/Globals';
+import {NotFoundhandler, onError} from './services/Helpers';
+import router from './routes/routes';
 
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const jsonapiSerializer = require('jsonapi-serializer');
-const JSONAPIError = jsonapiSerializer.Error;
-const http = require('http');
-const Globals = require('./constants/Globals');
-const NotFoundhandler = require('./services/Helpers').NotFoundhandler;
-const onError = require('./services/Helpers').onError;
+// const declaration
 const app = express();
-const router = require('./routes/routes');
+const JSONAPIError = jsonapiSerializer.Error;
+
+// middleware
 app.use(logger('dev'));
-app.use(bodyParser.json({ type: Globals.contentType }));
+app.use(bodyParser.json({ type: globalContentType }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use((req, res, next) => {
-    res.header('Content-Type', Globals.contentType);
-    res.header('Accept', Globals.contentType);
+    res.header('Content-Type', globalContentType);
+    res.header('Accept', globalContentType);
     res.removeHeader('X-Powered-By');
     next();
 });
@@ -27,21 +30,22 @@ app.use((req, res, next) => {
 app.all('*', (req, res, next) => {
     const contentType = req.header('Content-Type');
     const accept = req.header('Accept');
-    if (contentType !== Globals.contentType) {
-        const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${Globals.contentType}`);
+    if (contentType !== globalContentType) {
+        const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${globalContentType}`);
         err.status = 415;
         next(err);
     }
-    if (accept !== Globals.accept) {
+    if (accept !== globalAccept) {
         const err = new Error(`Unacceptable Accept header.`);
         err.status = 406;
         next(err);
     }
     next();
 });
+
 app.use('/', router);
 app.use(NotFoundhandler);
-// noinspection JSUnusedLocalSymbols because otherwise express doesn't recognise this as an error handler
+// noinspection JSUnusedLocalSymbols because otherwise express doesn't recognise this as an error handler eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     // serialize error
     const errors = new JSONAPIError({
@@ -53,7 +57,6 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.jsonp(errors);
 });
-const port = process.env.PORT || 3004;
 app.set('port', port);
 http.createServer(app)
     .on('error', onError)

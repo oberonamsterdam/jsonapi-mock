@@ -1,6 +1,4 @@
-module.exports = {
-    get: 'get',
-    post: 'post',
-    patch: 'patch',
-    delete: 'delete',
-};
+export const get = 'get';
+export const post = 'post';
+export const patch = 'patch';
+export const remove = 'delete';

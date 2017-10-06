@@ -1,5 +1,5 @@
-// @param route -- accepts a route that's replaced with . instead of '/', use replaceSlashWithDot to replace
 import * as Globals from '../constants/Globals';
+import { port, db, mainRoutes } from '../constants/Globals';
 
 export const createDataArrayIfNotExists = (route) => {
     if (db.get(`${route}.data`).value() === undefined || db.get(`${route}.data`).value() === null) {
@@ -18,15 +18,19 @@ export const replaceSlashWithDot = (route) => {
 export const removePrefix = (str) => str.replace(Globals.nestedRoutePrefix, '');
 export const addPrefix = (str) => Globals.nestedRoutePrefix + str;
 export const addPrefixToRoutes = (routes) => {
-    routes.forEach((route, i) => routes[i] = addPrefix(route));
+    routes.forEach((route, i) => {
+        routes[i] = addPrefix(route);
+    });
     return routes;
 };
 export const removePrefixFromRoutes = (routes) => {
-    routes.forEach((route, i) => routes[i] = removePrefix(route));
+    routes.forEach((route, i) => {
+        routes[i] = removePrefix(route);
+    });
     return routes;
 };
 export const removeNestedRoutes = (obj) => {
-    let objCopy = Object.assign(obj);
+    const objCopy = Object.assign(obj);
     Object.keys(objCopy).forEach((objKey) => {
         if (isNested(objKey)) {
             delete objCopy[objKey];
@@ -38,7 +42,7 @@ export const traverseThroughRoutes = (routes, resource) => {
     if (routes.length === 0) {
         return resource;
     }
-    let resourceKeys = Object.keys(resource);
+    const resourceKeys = Object.keys(resource);
     for (let idx = 0, len = resourceKeys.length; idx < len; idx++) {
         for (let i = 0, length = routes.length; i < length; i++) {
             if (resourceKeys[idx] === Globals.nestedRoutePrefix + routes[i]) {
@@ -89,4 +93,29 @@ export const NotFoundhandler = (req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
+};
+
+export const isNested = (route) => route.indexOf(Globals.nestedRoutePrefix) !== -1;
+
+// this is NOT a pure function and it changes a global variable, it should only
+// be called once on startup
+export const recursiveThroughRoutes = (routes, reference) => {
+    const routesKeys = Object.keys(routes);
+    routesKeys.map((subRoute) => {
+        // if subroute is nested, go nest mode
+        if (isNested(subRoute)) {
+            const subRouteReplaced = subRoute.replace(Globals.nestedRoutePrefix, '');
+            let route = '';
+            if (reference) {
+                route = `${reference}/${subRouteReplaced}`;
+            } else {
+                route = `${subRouteReplaced}`;
+            }
+            mainRoutes.push(route);
+            recursiveThroughRoutes(routes[subRoute], route);
+        } else if (!reference) {
+            // if subroute isn't nested, push it to the routes
+            mainRoutes.push(`${subRoute}`);
+        }
+    });
 };

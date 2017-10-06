@@ -23,14 +23,14 @@
     },
     "homepage": "https://github.com/Thomas-X/jsonapi-mock#readme",
     "dependencies": {
-        "body-parser": "^1.18.1",
+        "body-parser": "^1.18.2",
         "chalk": "latest",
         "child-process-promise": "^2.2.1",
         "clear": "0.0.1",
         "commander": "^2.11.0",
         "cookie-parser": "^1.4.3",
         "debug": "^2.6.9",
-        "express": "^4.15.4",
+        "express": "^4.16.1",
         "hbs": "^4.0.1",
         "jsonapi-serializer": "^3.5.5",
         "jsonlint": "^1.6.2",
@@ -38,13 +38,14 @@
         "morgan": "^1.9.0",
         "node-watch": "^0.5.5",
         "nodemon": "^1.12.1",
-        "serve-favicon": "^2.4.4",
+        "serve-favicon": "^2.4.5",
         "uuid": "^3.1.0"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.0.1",
         "babel-preset-env": "^1.6.0",
-        "eslint": "^4.7.2",
+        "eslint": "^4.8.0",
         "eslint-config-oberon": "^1.1.2"
     }
 }
