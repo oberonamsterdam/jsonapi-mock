@@ -91,7 +91,7 @@ This is the structure we expect coming from the jsonapi spec, so nothing abnorma
     "posts": {
         "data": [
             {
-                "type": "posts,
+                "type": "posts",
                 "id": "fcd856e4-2b35-4e18-abf7-41920cef39de",
                 "attributes": {
                     "title": "Lorem ipsum",
