@@ -42,6 +42,7 @@ If you find something that you think should be in the project or want to have a 
 + check return values and status codes on different methods (PATCH, DELETE) etc..
 + query operators on routes, sorting etc
 + nested routes
++ better faulty nested route declaration detection instead of throwing an HTTP 404 error
 + better status code responses compliant to jsonapi spec
 + add links, relationships, included, self and meta support
 + improve project structure ✅

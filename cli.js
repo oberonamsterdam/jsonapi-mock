@@ -35,6 +35,8 @@ ${e.message}
         return null;
     }
 };
+// TODO don't restart the server if the server itself makes a change to the watchfile
+// TODO this might be impossible / very difficult.
 const spawnNodeServer = () => {
     clear();
     const env = Object.create(process.env);

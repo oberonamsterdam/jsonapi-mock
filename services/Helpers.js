@@ -1,5 +1,5 @@
 import * as Globals from '../constants/Globals';
-import { port, db, mainRoutes } from '../constants/Globals';
+import { db, mainRoutes, port } from '../constants/Globals';
 
 export const createDataArrayIfNotExists = (route) => {
     if (db.get(`${route}.data`).value() === undefined || db.get(`${route}.data`).value() === null) {
@@ -28,6 +28,19 @@ export const removePrefixFromRoutes = (routes) => {
         routes[i] = removePrefix(route);
     });
     return routes;
+};
+export const isValid = (req, res, next, routes) => {
+    if (!Array.isArray(routes)) {
+        const err = new Error('Invalid main routes, this should never happen');
+        err.status = 500;
+        return next(err);
+    }
+    for (let i = 0; i < routes.length; i++) {
+        if (!routes[i].isValid) {
+            return res.jsonp('No no route is bad');
+        }
+    }
+    return next();
 };
 export const removeNestedRoutes = (obj) => {
     const objCopy = Object.assign(obj);
@@ -98,47 +111,71 @@ export const NotFoundhandler = (req, res, next) => {
 export const isNested = (route) => route.indexOf(Globals.nestedRoutePrefix) !== -1;
 
 // this is NOT a pure function and it changes a global variable, it should only
-// be called once on startup
-export const recursiveThroughRoutes = (routes, reference, prefixedReference) => {
+// be called ONCE, on startup
+export const recursiveThroughRoutes = (routes, reference) => {
     const routesKeys = Object.keys(routes);
     routesKeys.map((subRoute) => {
         // if subroute is nested, go nest mode
         if (isNested(subRoute)) {
-            const subRouteReplaced = subRoute.replace(Globals.nestedRoutePrefix, '');
-
+            let ref = '';
+            const subRouteReplaced = removePrefix(subRoute);
             const obj = {
                 route: '',
                 data: routes[subRoute],
                 routeWithPrefix: subRoute,
-                routes: prefixedReference,
+                reference: '',
                 isValid: true,
             };
-
-            prefixedReference.push(subRoute);
-            prefixedReference.map((trueRoute) => {
-                if (trueRoute.indexOf(Globals.nestedRoutePrefix) !== -1) {
-                    obj.isValid = false;
-                }
-            });
-
             if (reference) {
-                obj.route = `${reference}/${subRouteReplaced}`;
+                let refCopy = reference.split('.').slice();
+                refCopy.forEach((refx, idx) => {
+                    if (isNested(refx)) {
+                        refCopy[idx] = removePrefix(refx);
+                    }
+                });
+                refCopy = refCopy.join('/');
+                obj.route = `${refCopy}/${subRouteReplaced}`;
+                ref = `${reference}.${subRoute}`;
+                obj.reference = ref;
             } else {
+                ref = subRoute;
+                obj.reference = subRoute;
                 obj.route = `${subRouteReplaced}`;
             }
+            let isValid = true;
+            const referenceCopy = obj.reference.slice();
+
+            // if yes, that means its nested
+            if (obj.reference.indexOf(Globals.nestedRoutePrefix) !== -1) {
+                // so check all routes if they're nested..
+                // and if one of them isn't, isValid -> false
+                referenceCopy.split('.').map((ref) => {
+                    if (ref.indexOf(Globals.nestedRoutePrefix) === -1) {
+                        isValid = false;
+                    }
+                });
+            } else {
+                // else, it means it isn't nested
+                // check all routes and if they contain a nested route, isValid -> false
+                referenceCopy.split('.').map((ref) => {
+                    if (ref.indexOf(Globals.nestedRoutePrefix !== -1)) {
+                        isValid = false;
+                    }
+                });
+            }
+            obj.isValid = isValid;
             mainRoutes.push(obj);
-            recursiveThroughRoutes(routes[subRoute], obj.route, obj.routes);
+            recursiveThroughRoutes(routes[subRoute], ref);
         } else if (!reference) {
             // if subroute isn't nested, push it to the routes
-            prefixedReference.push(subRoute);
             const obj = {
                 data: routes[subRoute],
                 route: subRoute,
                 routeWithPrefix: subRoute,
-                routes: prefixedReference,
+                reference: subRoute,
                 isValid: true,
             };
-            mainRoutes.push(obj.route);
+            mainRoutes.push(obj);
         }
     });
 };

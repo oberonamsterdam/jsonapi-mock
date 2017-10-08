@@ -2,21 +2,18 @@ import { createDataArrayIfNotExists, isValidPostValue, replaceSlashWithDot, wrap
 import { db } from '../constants/Globals';
 import uuidv1 from 'uuid/v1';
 
+// required in body:
+// type
 export const post = (req, res, next, route) => {
-    const splittedRoutes = route.split('/');
-
     if (isValidPostValue(req.body)) {
         const id = uuidv1();
-        const routeReplaced = replaceSlashWithDot(route);
-        const type = splittedRoutes
-            .slice()
-            .pop();
-
+        const { reference } = route;
+        const { type } = req.body.data;
         // create data keyword if not exists.
-        createDataArrayIfNotExists(route);
+        createDataArrayIfNotExists(route.reference);
 
         // push to db and write
-        db.get(`${routeReplaced}.data`)
+        db.get(`${reference}.data`)
             .push({
                 type: type,
                 id: id,
@@ -24,7 +21,7 @@ export const post = (req, res, next, route) => {
             })
             .write();
 
-        const newData = db.get(`${routeReplaced}.data`).find({ id: id }).value();
+        const newData = db.get(`${reference}.data`).find({ id: id }).value();
         if (newData) {
             res.jsonp(wrapInDataKey(newData));
         }

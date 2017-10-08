@@ -1,14 +1,14 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 /* eslint-disable no-unused-vars */
 import express from 'express';
-import logger from 'morgan';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import jsonapiSerializer from 'jsonapi-serializer';
 import http from 'http';
-import { globalContentType, globalAccept, port } from './constants/Globals';
-import {NotFoundhandler, onError} from './services/Helpers';
+import jsonapiSerializer from 'jsonapi-serializer';
+import logger from 'morgan';
+import { globalAccept, globalContentType, mainRoutes, port } from './constants/Globals';
 import router from './routes/routes';
+import { isValid, NotFoundhandler, onError } from './services/Helpers';
 
 // const declaration
 const app = express();
@@ -42,7 +42,7 @@ app.all('*', (req, res, next) => {
     }
     next();
 });
-
+app.all('*', (req, res, next) => isValid(req, res, next, mainRoutes));
 app.use('/', router);
 app.use(NotFoundhandler);
 // noinspection JSUnusedLocalSymbols because otherwise express doesn't recognise this as an error handler eslint-disable-next-line no-unused-vars
