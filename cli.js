@@ -7,6 +7,10 @@ const fs = require('fs');
 const jsonlint = require('jsonlint');
 const clear = require('clear');
 
+// add cat command to display a random cat pic
+// using:
+// https://github.com/substack/picture-tube
+// or other
 program
     .version('1.0.3')
     .option('-p --port [port]', 'Change the port from the default 3004')
