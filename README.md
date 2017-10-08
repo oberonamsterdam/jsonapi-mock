@@ -9,9 +9,7 @@
 <img src="http://forthebadge.com/images/badges/uses-js.svg" alt="badge"/>
 <img src="http://forthebadge.com/images/badges/gluten-free.svg" alt="badge"/>
 </p>
-<br/>
-### Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
-
+### Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb)⚡️
 # Usage and 'installing'
 Since I plan on updating this as much as possible, use `npx` instead of installing it via `npm` globally. You can use `npx` already if you have npm@^5.2.0.
 ```
