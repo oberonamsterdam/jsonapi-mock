@@ -42,6 +42,7 @@ If you find something that you think should be in the project or want to have a 
 + check return values and status codes on different methods (PATCH, DELETE) etc..
 + query operators on routes, sorting etc
 + nested routes
++ better faulty nested route declaration detection instead of throwing an HTTP 404 error
 + proper dummy file with nested and not nested routes. and write documentation for nested routes.
 + config .jsonapimock or in package.json 'jsonapimockConfig' for changing the nested route prefix, the accept and content type ,although you really shouldn't change the accept or content type header ;)
 + better status code responses compliant to jsonapi spec

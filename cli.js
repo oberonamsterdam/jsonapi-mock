@@ -35,6 +35,8 @@ ${e.message}
         return null;
     }
 };
+// TODO don't restart the server if the server itself makes a change to the watchfile
+// TODO this might be impossible / very difficult.
 const spawnNodeServer = () => {
     clear();
     const env = Object.create(process.env);
@@ -48,7 +50,7 @@ const spawnNodeServer = () => {
 if (fs.existsSync(watchDir)) {
     // watcher
     fileWatch(watchDir, { recursive: false }, (e, name) => {
-        if(e === 'update') {
+        if (e === 'update') {
             child.kill();
             clear();
             child = spawnNodeServer();
@@ -77,7 +79,7 @@ ${errorMessage(`db.json file not found!`)}
     
     `);
     fs.writeFileSync(watchDir, JSON.stringify(sampleJson, null, 4), (err) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
         console.log(`
