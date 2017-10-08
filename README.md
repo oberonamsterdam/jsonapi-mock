@@ -2,11 +2,13 @@
   <img src="https://raw.githubusercontent.com/Thomas-X/jsonapi-mock/master/jsonapi.jpg" alt="jsonapi mock"/>
 </p>
 <br/> 
-<br/>
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) 
-[![forthebadge](http://forthebadge.com/images/badges/contains-cat-gifs.svg)](http://forthebadge.com) 
-[![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)](http://forthebadge.com)
-
+<br/>  
+<p>
+<img src="http://forthebadge.com/images/badges/built-with-love.svg" alt="badge"/>
+<img src="http://forthebadge.com/images/badges/contains-cat-gifs.svg" alt="badge"/>
+<img src="http://forthebadge.com/images/badges/uses-js.svg" alt="badge"/>
+<img src="http://forthebadge.com/images/badges/gluten-free.svg" alt="badge"/>
+</p>
 <br/>
 ### Setup a [jsonapi](http://jsonapi.org/) mock server in **almost** no time! Uses [lowdb](https://github.com/typicode/lowdb) ⚡️
 
