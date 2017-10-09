@@ -21,7 +21,7 @@ npx jsonapi-mock
 ```
 OR (not recommended!)
 ```
-npm install jsonapi-mock
+npm install jsonapi-mock -g
 ```
 Run this in your project folder
 ```
