@@ -131,7 +131,7 @@ For a nested route setup it's slightly different:
     }
 }
 ```
-You might notice the `route:` prefix on all of the routes, this is to determine whether a key in the current object is a route or not. For now the prefix is `route:`, there's a todo for changing this via a config file or in your package.json file. <br/>
+You might notice the `route:` prefix on all of the routes, this is to determine whether a key in the current object is a route or not. The default prefix is `route:` but you can change the prefix via the configuration file (`.jsonapimockrc`) <br/>
 This nesting can go infinitely deep (well, as far as your .json filesize allows).
 
 # Configuration
@@ -171,11 +171,12 @@ If you find something that you think should be in the project or want to have a 
 + nested routes ✅
 + better faulty nested route declaration detection instead of throwing an HTTP 404 error
 + proper dummy file with nested and not nested routes. and write documentation for nested routes. ✅
-+ config .jsonapimock or in package.json 'jsonapimockConfig' for changing the nested route prefix, the accept and content ✅ type ,although you really shouldn't change the accept or content type header ;) ✅
++ config .jsonapimock or in package.json 'jsonapimockConfig' for changing the nested route prefix, the accept and content type ,although you really shouldn't change the accept or content type header ;) ✅
 + better status code responses compliant to jsonapi spec 🚧
 + add links, relationships, included, self and meta support
 + improve project structure ✅
-+ write documentation for using .jsonapimockrc config
++ write documentation for using .jsonapimockrc config ✅
++ parameters and operators on routes (comes with query operators and sorting, because I'm cool like that)
 + keep improving docs 🚧
 + add [faker](https://www.npmjs.com/package/faker) flag/possibility for faking data and generating all the dummy data you want
 + add more examples in docs 🚧
