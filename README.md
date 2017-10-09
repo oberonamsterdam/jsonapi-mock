@@ -148,11 +148,12 @@ If you find something that you think should be in the project or want to have a 
 + query operators on routes, sorting etc
 + nested routes ✅
 + better faulty nested route declaration detection instead of throwing an HTTP 404 error
-+ proper dummy file with nested and not nested routes. and write documentation for nested routes. 🚧
-+ config .jsonapimock or in package.json 'jsonapimockConfig' for changing the nested route prefix, the accept and content type ,although you really shouldn't change the accept or content type header ;)
++ proper dummy file with nested and not nested routes. and write documentation for nested routes. ✅
++ config .jsonapimock or in package.json 'jsonapimockConfig' for changing the nested route prefix, the accept and content type ,although you really shouldn't change the accept or content type header ;) ✅
 + better status code responses compliant to jsonapi spec 🚧
 + add links, relationships, included, self and meta support
 + improve project structure ✅
++ write documentation for using .jsonapimockrc config
 + keep improving docs 🚧
 + add [faker](https://www.npmjs.com/package/faker) flag/possibility for faking data and generating all the dummy data you want
 + add more examples in docs 🚧
