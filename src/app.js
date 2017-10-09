@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Content-Type', globalContentType);
     res.header('Accept', globalContentType);
     res.removeHeader('X-Powered-By');
@@ -30,8 +32,8 @@ app.use((req, res, next) => {
 
 // check header and pass error if not supported.
 app.all('*', (req, res, next) => {
-    const contentType = req.header('Content-Type');
-    const accept = req.header('Accept');
+    const contentType = req.header('Content-Type') || '';
+    const accept = req.header('Accept') || '';
     if (contentType.indexOf(globalContentType) === -1) {
         const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${globalContentType}`);
         err.status = 415;
