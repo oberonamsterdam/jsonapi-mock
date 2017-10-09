@@ -131,7 +131,7 @@ For a nested route setup it's slightly different:
     }
 }
 ```
-You might notice the `route:` prefix on all of the routes, this is to determine whether a key in the current object is a route or not. For now the prefix is `route:`, there's a todo for changing this via a config file or in your package.json file. <br/>
+You might notice the `route:` prefix on all of the routes, this is to determine whether a key in the current object is a route or not. The default prefix is `route:` but you can change the prefix via the configuration file (`.jsonapimockrc`) <br/>
 This nesting can go infinitely deep (well, as far as your .json filesize allows).
 
 # Configuration
