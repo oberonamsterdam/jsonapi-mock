@@ -32,12 +32,12 @@ app.use((req, res, next) => {
 app.all('*', (req, res, next) => {
     const contentType = req.header('Content-Type');
     const accept = req.header('Accept');
-    if (contentType !== globalContentType) {
+    if (contentType.indexOf(globalContentType) === -1) {
         const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${globalContentType}`);
         err.status = 415;
         next(err);
     }
-    if (accept !== globalAccept) {
+    if (accept.indexOf(globalAccept) === -1) {
         const err = new Error(`Unacceptable Accept header.`);
         err.status = 406;
         next(err);

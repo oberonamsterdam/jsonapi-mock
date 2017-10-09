@@ -38,6 +38,11 @@ jspm_packages/
 compiled/
 # Typescript v1 declaration files
 typings/
+app.js
+constants/
+handlers/
+routes/
+services/
 
 # Optional npm cache directory
 .npm
