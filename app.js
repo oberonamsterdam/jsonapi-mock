@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './services/CheckEnvVars';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 /* eslint-disable no-unused-vars */
@@ -19,6 +20,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json({ type: globalContentType }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 app.use((req, res, next) => {
     res.header('Content-Type', globalContentType);
     res.header('Accept', globalContentType);

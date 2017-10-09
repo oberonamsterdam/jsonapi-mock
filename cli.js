@@ -6,7 +6,13 @@ const fileWatch = require('node-watch');
 const fs = require('fs');
 const jsonlint = require('jsonlint');
 const clear = require('clear');
-
+const conf = require('rc')('jsonapimock', {
+    port: 3004,
+    watch: 'db.json',
+    nestedRoutePrefix: 'route:',
+    contentType: 'application/vnd.api+json',
+    accept: 'application/vnd.api+json',
+});
 // add cat command to display a random cat pic
 // using:
 // https://github.com/substack/picture-tube
@@ -17,8 +23,8 @@ program
     .option('-w, --watch [value]', 'Watch a .json file to act as a DB')
     .parse(process.argv);
 
-const port = program.port || 3004;
-const watch = program.watch || 'db.json';
+const port = program.port || conf.port;
+const watch = program.watch || conf.watch;
 const watchDir = process.cwd() + '/' + watch;
 let child = null;
 
@@ -33,7 +39,7 @@ const validateJSON = (json) => {
         clear();
         console.log(`
 ${errorMessage(e.name)}
-        
+
 ${e.message}
 `);
         return null;
@@ -44,8 +50,13 @@ ${e.message}
 const spawnNodeServer = () => {
     clear();
     const env = Object.create(process.env);
+    // no spread operators so we have this monstrosity :(
     env.PORT = port;
-    env.WATCHFILE = watchDir;
+    env.WATCHFILE = watch;
+    env.NESTEDROUTEPREFIX = conf.nestedRoutePrefix;
+    env.CONTENTTYPE = conf.contentType;
+    env.ACCEPT = conf.accept;
+    console.log(env);
     const child = spawn(`jsonapi-node-server`, [], { env: env});
     child.stdout.on('data', data => console.log(String(data)));
     child.stderr.on('data', data => console.log(String(data)));
@@ -63,7 +74,7 @@ if (fs.existsSync(watchDir)) {
         if (e === 'remove') {
             clear();
             console.log(`
-        
+
 ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
 
         `);
@@ -76,20 +87,20 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
 } else if (!fs.existsSync(watchDir)) {
     const sampleJson = require('./db.json');
     console.log(`
-    
+
 ${errorMessage(`db.json file not found!`)}
-    
+
     ${chalk.green.bold(`Generating one with sample data for you. :)`)}
-    
+
     `);
     fs.writeFileSync(watchDir, JSON.stringify(sampleJson, null, 4), (err) => {
         if (err) {
             return console.log(err);
         }
         console.log(`
-        
+
         ${chalk.green.bold(`Generated sample db.json!`)}
-        
+
         `);
     });
     // init server

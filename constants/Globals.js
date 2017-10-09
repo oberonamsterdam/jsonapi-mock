@@ -3,12 +3,12 @@ import fs from 'fs';
 import low from 'lowdb';
 import { recursiveThroughRoutes } from '../services/Helpers';
 
-export const globalContentType = 'application/vnd.api+json';
-export const globalAccept = 'application/vnd.api+json';
-export const nestedRoutePrefix = 'route:';
-export const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE || 'db.json', 'utf8'));
-export const port = process.env.PORT || 3004;
-export const adapter = new FileSync(process.env.WATCHFILE || 'db.json');
+export const globalContentType = process.env.CONTENTTYPE;
+export const globalAccept = process.env.ACCEPT;
+export const nestedRoutePrefix = process.env.NESTEDROUTEPREFIX;
+export const json = JSON.parse(fs.readFileSync(process.env.WATCHFILE, 'utf8'));
+export const port = process.env.PORT;
+export const adapter = new FileSync(process.env.WATCHFILE);
 export const db = low(adapter);
 export const mainRoutes = [];
 recursiveThroughRoutes(json, null, []);
