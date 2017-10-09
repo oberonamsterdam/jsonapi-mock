@@ -133,6 +133,28 @@ For a nested route setup it's slightly different:
 ```
 You might notice the `route:` prefix on all of the routes, this is to determine whether a key in the current object is a route or not. For now the prefix is `route:`, there's a todo for changing this via a config file or in your package.json file. <br/>
 This nesting can go infinitely deep (well, as far as your .json filesize allows).
+
+# Configuration
+You can configurate jsonapi-mock via an `.jsonapimockrc` file in your project root (so the directory where you're executing the `npx jsonapi-mock` command). Here's an example configuration with all the possible options:
+```
+{
+  "port": 3006,
+  "watch": "db2.json",
+  "nestedRoutePrefix": "route-"
+  "contentType": 'application/json',
+  "accept": '*/*'
+}
+```
+The defaults are:
+```
+{
+  "port": 3004,
+  "watch": "db.json",
+  "nestedRoutePrefix": "route:"
+  "contentType": 'application/vnd.api+json',
+  "accept": 'application/vnd.api+json'
+}
+```
 # Motivation
 I searched for days to find a good and dead simple jsonapi mock server, all of them required me to do all kinds of crazy stuff and learn their complicated API. I saw [json-server](https://github.com/typicode/json-server) and really liked the concept of just defining your routes and some sample data and you're good to go.
 
