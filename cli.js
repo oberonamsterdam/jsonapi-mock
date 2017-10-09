@@ -85,7 +85,7 @@ ${errorMessage(`Couldn't read ${watch} because it got removed!`)}
         child = spawnNodeServer();
     }
 } else if (!fs.existsSync(watchDir)) {
-    const sampleJson = require('./db.json');
+    const sampleJson = require('./src/db.json');
     console.log(`
 
 ${errorMessage(`db.json file not found!`)}
