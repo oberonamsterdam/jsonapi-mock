@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "babel-node": "babel-node --presets=env",
         "start": "IGNORE_NO_ENV_VARIABLES=true nodemon --exec npm run babel-node ./app.js",
-        "prepublish": "babel src --out-dir compiled"
+        "prepublishOnly": "babel src --out-dir compiled"
     },
     "bin": {
         "jsonapi-mock": "./cli.js",
