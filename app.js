@@ -60,12 +60,12 @@ app.use(function (req, res, next) {
 app.all('*', function (req, res, next) {
     var contentType = req.header('Content-Type');
     var accept = req.header('Accept');
-    if (contentType !== _Globals.globalContentType) {
+    if (contentType.indexOf(_Globals.globalContentType) === -1) {
         var err = new Error('Unsupported media type, your media type is: ' + contentType + ', it should be ' + _Globals.globalContentType);
         err.status = 415;
         next(err);
     }
-    if (accept !== _Globals.globalAccept) {
+    if (accept.indexOf(_Globals.globalAccept) === -1) {
         var _err = new Error('Unacceptable Accept header.');
         _err.status = 406;
         next(_err);
