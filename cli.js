@@ -56,7 +56,6 @@ const spawnNodeServer = () => {
     env.NESTEDROUTEPREFIX = conf.nestedRoutePrefix;
     env.CONTENTTYPE = conf.contentType;
     env.ACCEPT = conf.accept;
-    console.log(env);
     const child = spawn(`jsonapi-node-server`, [], { env: env});
     child.stdout.on('data', data => console.log(String(data)));
     child.stderr.on('data', data => console.log(String(data)));

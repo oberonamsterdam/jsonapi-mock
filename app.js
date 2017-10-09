@@ -27,13 +27,13 @@ var _morgan = require('morgan');
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
-var _Globals = require('./src/constants/Globals');
+var _Globals = require('./constants/Globals');
 
-var _routes = require('./src/routes/routes');
+var _routes = require('./routes/routes');
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _Helpers = require('./src/services/Helpers');
+var _Helpers = require('./services/Helpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
