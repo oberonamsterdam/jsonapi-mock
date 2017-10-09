@@ -11,7 +11,7 @@
     },
     "bin": {
         "jsonapi-mock": "./cli.js",
-        "jsonapi-node-server": "./compiled/app.js"
+        "jsonapi-node-server": "./app.js"
     },
     "repository": {
         "type": "git",
