@@ -153,6 +153,7 @@ If you find something that you think should be in the project or want to have a 
 + better status code responses compliant to jsonapi spec 🚧
 + add links, relationships, included, self and meta support
 + improve project structure ✅
++ write documentation for using .jsonapimockrc config
 + keep improving docs 🚧
 + add [faker](https://www.npmjs.com/package/faker) flag/possibility for faking data and generating all the dummy data you want
 + add more examples in docs 🚧
