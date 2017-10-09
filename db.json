@@ -145,57 +145,57 @@
                             {
                                 "id": 117,
                                 "label": "Coat Stands",
-                                "route": "/products/coat-stands"
+                                "route": "/categories/coat-stands"
                             },
                             {
                                 "id": 118,
                                 "label": "Lockers",
-                                "route": "/products/lockers"
+                                "route": "/categories/lockers"
                             },
                             {
                                 "id": 119,
                                 "label": "Benches",
-                                "route": "/products/benches"
+                                "route": "/categories/benches"
                             },
                             {
                                 "id": 120,
                                 "label": "Coat Hangers",
-                                "route": "/products/coat-hangers"
+                                "route": "/categories/coat-hangers"
                             },
                             {
                                 "id": 120,
                                 "label": "Showcases",
-                                "route": "/products/showcases"
+                                "route": "/categories/showcases"
                             },
                             {
                                 "id": 121,
                                 "label": "Brochure Stands",
-                                "route": "/products/brochure-stands"
+                                "route": "/categories/brochure-stands"
                             },
                             {
                                 "id": 122,
                                 "label": "Umbrella Stands",
-                                "route": "/products/umbrella-stands"
+                                "route": "/categories/umbrella-stands"
                             },
                             {
                                 "id": 123,
                                 "label": "Bag Racks",
-                                "route": "/products/bag-racks"
+                                "route": "/categories/bag-racks"
                             },
                             {
                                 "id": 124,
                                 "label": "Mirrors",
-                                "route": "/products/mirrors"
+                                "route": "/categories/mirrors"
                             },
                             {
                                 "id": 125,
                                 "label": "Tables",
-                                "route": "/products/tables"
+                                "route": "/categories/tables"
                             },
                             {
                                 "id": 126,
                                 "label": "Waste Bins",
-                                "route": "/products/waste-bins"
+                                "route": "/categories/waste-bins"
                             }
                         ]
                     }
@@ -1301,6 +1301,563 @@
                             }
                         }
                     }
+                }
+            }
+        ]
+    },
+    "route:products": {
+        "route:product": {
+            "meta": {
+                "title": "Product",
+                "description": "Specialist in design kapstokken | garderobe systemen | lockers | brochurehouders | maatwerk sinds 1972.",
+                "author": "Oberon"
+            },
+            "data": [
+                {
+                    "type": "product",
+                    "id": 12,
+                    "attributes": {
+                        "slug": "wheels-1",
+                        "title": "Wheels",
+                        "entry": {
+                            "label": "Wheels",
+                            "url": "/products/wheels-1"
+                        },
+                        "meta": [
+                            {
+                                "type": "price",
+                                "value": 150
+                            }
+                        ],
+                        "family": {
+                            "id": "23",
+                            "label": "Wheels",
+                            "slug": "wheels"
+                        },
+                        "category": {
+                            "id": "20",
+                            "label": "Kapstok",
+                            "slug": "kapstok"
+                        },
+                        "hero_image": {
+                            "alt": "Wheels",
+                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/wheels.jpg",
+                            "width": 1920,
+                            "height": 1528,
+                            "transforms": {}
+                        },
+                        "image": {
+                            "alt": "Wheels 50 Yellow",
+                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-50-yellow.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "designer": {
+                            "id": 15,
+                            "slug": "dirk-ploos-van-amstel",
+                            "title": "Dirk Ploos van Amstel",
+                            "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br />tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br />quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br />consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br />cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non<br />proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+                            "a_word_from_the_designer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat.",
+                            "avatar": {
+                                "alt": "08 3 Dirkploosvanamstel 20150121 009 E1433408629562",
+                                "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/08.3-dirkploosvanamstel_20150121_009-e1433408629562.jpg",
+                                "width": 299,
+                                "height": 200
+                            },
+                            "video_url": "https://www.youtube.com/watch?v=f8FJsNPRkKA",
+                            "highlight_cover": {
+                                "alt": "Tree Hooked",
+                                "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/tree-hooked.jpg",
+                                "width": 1920,
+                                "height": 1464
+                            }
+                        },
+                        "price": 150,
+                        "cheapest_variant": 150,
+                        "tax_rate": 0.21,
+                        "information": {
+                            "label": "Information",
+                            "data": "Wheels coat hooks, designed by the Dutch designer Dirk Ploos van Amstel, are very practical. These coat hooks are wheels too. This allows the spaces between the hooks to be enlarged or reduce. It takes just a second to adjust the hooks for the number of coats. The mat epoxy coated aluminium and light ash timber lend Wheels a warm and no-nonsense appearance."
+                        },
+                        "is_new": true,
+                        "is_sale": false,
+                        "files": {
+                            "label": "Bestanden die bij Wheels horen",
+                            "data": [
+                                {
+                                    "label": "Download de handleiding voor Wheels",
+                                    "link": "#"
+                                }
+                            ]
+                        },
+                        "designer_highlight": {
+                            "title": "Wheels",
+                            "designers": [
+                                {
+                                    "id": 15,
+                                    "slug": "dirk-ploos-van-amstel",
+                                    "title": "Dirk Ploos van Amstel",
+                                    "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br />tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br />quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br />consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br />cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non<br />proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+                                    "a_word_from_the_designer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat.",
+                                    "avatar": {
+                                        "alt": "08 3 Dirkploosvanamstel 20150121 009 E1433408629562",
+                                        "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/08.3-dirkploosvanamstel_20150121_009-e1433408629562.jpg",
+                                        "width": 299,
+                                        "height": 200
+                                    },
+                                    "video_url": "https://www.youtube.com/watch?v=f8FJsNPRkKA",
+                                    "highlight_cover": {
+                                        "alt": "Tree Hooked",
+                                        "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/tree-hooked.jpg",
+                                        "width": 1920,
+                                        "height": 1464
+                                    }
+                                }
+                            ],
+                            "video_url": null
+                        },
+                        "highlights": [
+                            {
+                                "title": "Wheels",
+                                "designers": [
+                                    {
+                                        "id": 15,
+                                        "slug": "dirk-ploos-van-amstel",
+                                        "title": "Dirk Ploos van Amstel",
+                                        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br />tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,<br />quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo<br />consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse<br />cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non<br />proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+                                        "a_word_from_the_designer": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat.",
+                                        "avatar": {
+                                            "alt": "08 3 Dirkploosvanamstel 20150121 009 E1433408629562",
+                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/08.3-dirkploosvanamstel_20150121_009-e1433408629562.jpg",
+                                            "width": 299,
+                                            "height": 200
+                                        },
+                                        "video_url": "https://www.youtube.com/watch?v=f8FJsNPRkKA",
+                                        "highlight_cover": {
+                                            "alt": "Tree Hooked",
+                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/designers/dirk-ploos-van-amstel/tree-hooked.jpg",
+                                            "width": 1920,
+                                            "height": 1464
+                                        }
+                                    }
+                                ],
+                                "video_url": null
+                            }
+                        ],
+                        "impressions": [
+                            {
+                                "title": "",
+                                "price": "laagste prijs vanuit backend"
+                            }
+                        ],
+                        "default_customisation": {
+                            "model": "35",
+                            "material": "37",
+                            "color": "30"
+                        },
+                        "customisation": {
+                            "label": "Types",
+                            "type": "model",
+                            "data": {
+                                "35": {
+                                    "value": {
+                                        "id": "35",
+                                        "label": "50cm",
+                                        "slug": "50cm"
+                                    },
+                                    "label": "Materials",
+                                    "type": "material",
+                                    "data": {
+                                        "37": {
+                                            "value": {
+                                                "id": "37",
+                                                "label": "Pine",
+                                                "slug": "pine",
+                                                "icon": {
+                                                    "alt": "Material Pine@2X",
+                                                    "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/material-pine@2x.png",
+                                                    "width": 100,
+                                                    "height": 100
+                                                }
+                                            },
+                                            "label": "Available colors",
+                                            "type": "color",
+                                            "data": {
+                                                "25": {
+                                                    "value": {
+                                                        "id": "25",
+                                                        "label": "Red",
+                                                        "slug": "ve3309",
+                                                        "icon": {
+                                                            "alt": "Color Red@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-red@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels50vE3309",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 50 cm vE3309",
+                                                        "price": 150,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 50
+                                                        },
+                                                        "weight": 0,
+                                                        "product_image": {
+                                                            "alt": "Wheels 50 Dark Red",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-50-dark-red.png",
+                                                            "width": 1080,
+                                                            "height": 1080
+                                                        }
+                                                    }
+                                                },
+                                                "26": {
+                                                    "value": {
+                                                        "id": "26",
+                                                        "label": "Light blue",
+                                                        "slug": "ve5324",
+                                                        "icon": {
+                                                            "alt": "Color Light Blue@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-light-blue@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels50vE5324",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 50cm vE5324",
+                                                        "price": 150,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 50
+                                                        },
+                                                        "weight": 0,
+                                                        "product_image": {
+                                                            "alt": "Wheels 50 Light Blue",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-50-light-blue.jpg",
+                                                            "width": 1080,
+                                                            "height": 1080
+                                                        }
+                                                    }
+                                                },
+                                                "30": {
+                                                    "value": {
+                                                        "id": "30",
+                                                        "label": "Yellow ocher",
+                                                        "slug": "ve1304",
+                                                        "icon": {
+                                                            "alt": "Color Yellow Ocher@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-yellow-ocher@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels50vE1304",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 50cm vE1304",
+                                                        "price": 150,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 50
+                                                        },
+                                                        "weight": 0,
+                                                        "product_image": {
+                                                            "alt": "Wheels 50 Yellow",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-50-yellow.jpg",
+                                                            "width": 1080,
+                                                            "height": 1080
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "74": {
+                                            "value": {
+                                                "id": "74",
+                                                "label": "Dark Pine",
+                                                "slug": "dark-pine",
+                                                "icon": {
+                                                    "alt": "Material Dark Pine@2X",
+                                                    "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/material-dark-pine@2x.png",
+                                                    "width": 100,
+                                                    "height": 100
+                                                }
+                                            },
+                                            "label": "Available colors",
+                                            "type": "color",
+                                            "data": {
+                                                "72": {
+                                                    "value": {
+                                                        "id": "72",
+                                                        "label": "Black",
+                                                        "slug": "ve9311",
+                                                        "icon": {
+                                                            "alt": "Color Black@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-black@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels50cmvE9311",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 50cm vE9311",
+                                                        "price": 150,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 50
+                                                        },
+                                                        "weight": 0,
+                                                        "product_image": {
+                                                            "alt": "Wheels 50 Black",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-50-black.jpg",
+                                                            "width": 1080,
+                                                            "height": 1080
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "36": {
+                                    "value": {
+                                        "id": "36",
+                                        "label": "80cm",
+                                        "slug": "80cm"
+                                    },
+                                    "label": "Materials",
+                                    "type": "material",
+                                    "data": {
+                                        "37": {
+                                            "value": {
+                                                "id": "37",
+                                                "label": "Pine",
+                                                "slug": "pine",
+                                                "icon": {
+                                                    "alt": "Material Pine@2X",
+                                                    "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/material-pine@2x.png",
+                                                    "width": 100,
+                                                    "height": 100
+                                                }
+                                            },
+                                            "label": "Available colors",
+                                            "type": "color",
+                                            "data": {
+                                                "27": {
+                                                    "value": {
+                                                        "id": "27",
+                                                        "label": "Dark grey",
+                                                        "slug": "ve7377",
+                                                        "icon": {
+                                                            "alt": "Color Dark Grey@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-dark-grey@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels80vE7377",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 80 cm vE7377",
+                                                        "price": 185,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 80
+                                                        },
+                                                        "weight": 0,
+                                                        "product_image": {
+                                                            "alt": "Wheels 80 Black",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/products/wheels-1/variants/wheels-80-black.png",
+                                                            "width": 1080,
+                                                            "height": 1080
+                                                        }
+                                                    }
+                                                },
+                                                "28": {
+                                                    "value": {
+                                                        "id": "28",
+                                                        "label": "Dark blue",
+                                                        "slug": "ve5311",
+                                                        "icon": {
+                                                            "alt": "Color Blue@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-blue@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels80vE5311",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 80 cm vE5311",
+                                                        "price": 185,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 80
+                                                        },
+                                                        "weight": 0
+                                                    }
+                                                },
+                                                "29": {
+                                                    "value": {
+                                                        "id": "29",
+                                                        "label": "Dark green",
+                                                        "slug": "ve6309",
+                                                        "icon": {
+                                                            "alt": "Color Dark Green@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-dark-green@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels80vE6309",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 80 cm vE6309",
+                                                        "price": 185,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 80
+                                                        },
+                                                        "weight": 0
+                                                    }
+                                                },
+                                                "31": {
+                                                    "value": {
+                                                        "id": "31",
+                                                        "label": "White",
+                                                        "slug": "ve9310",
+                                                        "icon": {
+                                                            "alt": "Color White@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-white@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels80vE9310",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 80 cm vE9310",
+                                                        "price": 185,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 80
+                                                        },
+                                                        "weight": 0
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "74": {
+                                            "value": {
+                                                "id": "74",
+                                                "label": "Dark Pine",
+                                                "slug": "dark-pine",
+                                                "icon": {
+                                                    "alt": "Material Dark Pine@2X",
+                                                    "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/material-dark-pine@2x.png",
+                                                    "width": 100,
+                                                    "height": 100
+                                                }
+                                            },
+                                            "label": "Available colors",
+                                            "type": "color",
+                                            "data": {
+                                                "30": {
+                                                    "value": {
+                                                        "id": "30",
+                                                        "label": "Yellow ocher",
+                                                        "slug": "ve1304",
+                                                        "icon": {
+                                                            "alt": "Color Yellow Ocher@2X",
+                                                            "src": "http://s3-eu-west-1.amazonaws.com/van-esch-test/assets/icons/color-yellow-ocher@2x.png",
+                                                            "width": 100,
+                                                            "height": 100
+                                                        }
+                                                    },
+                                                    "variant": {
+                                                        "id": "wheels80cmvE6309",
+                                                        "slug": "wheels-1",
+                                                        "title": "Wheels 80 cm vE6309",
+                                                        "price": 185,
+                                                        "tax_rate": 0.21,
+                                                        "stock": 0,
+                                                        "unlimited_stock": true,
+                                                        "dimensions": {
+                                                            "width": 11.5,
+                                                            "height": 15,
+                                                            "length": 80
+                                                        },
+                                                        "weight": 0
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "data": [
+            {
+                "type": "products",
+                "id": "97fb3d3a-9140-4278-a204-17a904eb3e86",
+                "attributes": {
+                    "title": "Sample",
+                    "description": "more sample"
+                }
+            },{
+                "type": "products",
+                "id": "5d0a7e73-0809-4ce1-a428-ce859a392ac4",
+                "attributes": {
+                    "title": "Sample",
+                    "description": "more sample"
+                }
+            },{
+                "type": "products",
+                "id": "92abb222-86b8-4cf1-a464-ede1dbf415dc",
+                "attributes": {
+                    "title": "Sample",
+                    "description": "more sample"
                 }
             }
         ]

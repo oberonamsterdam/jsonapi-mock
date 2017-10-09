@@ -1,33 +1,29 @@
-import { checkIfNotNull, isLastItem, NotFoundhandler, replaceSlashWithDot, wrapInDataKey } from '../services/Helpers';
-import { db } from '../constants/Globals';
-import { mainRoutes} from '../constants/Globals';
+import { db, mainRoutes } from '../constants/Globals';
+import { checkIfNotNull, isLastItem, NotFoundhandler, wrapInDataKey } from '../services/Helpers';
 
-export const getWithParam = (req, res, next, route) => {
+export const getWithParam = (req, res, next, mainRoute) => {
     const id = req.params.id;
+    const { reference, route, data } = mainRoute;
 
-    const routeReplaced = replaceSlashWithDot(route);
+    res.jsonp(data);
 
-    // this means we have an ID the same as a route (which is not allowed, so this is OK)
-    // so we forward it to the next with route included
-    if (mainRoutes.includes(route)) {
-        next(route);
-    } else {
-        if (checkIfNotNull(id)) {
-            const objValue = db.get(`${routeReplaced}.data`).value();
-            if (objValue && Array.isArray(objValue)) {
-                objValue.forEach((elem, index) => {
-                    if (checkIfNotNull(elem.id) && elem.id === id) {
-                        res.jsonp(wrapInDataKey(elem));
-                    } else if (isLastItem(index, objValue)) {
-                        next();
-                    }
-                });
-            } else {
-                next();
-            }
-        } else {
-            NotFoundhandler();
-            next();
-        }
-    }
+    // if (mainRoutes.includes(route)) {
+    //     next(route);
+    // } else if (checkIfNotNull(id)) {
+    //     const objValue = db.get(`${reference}.data`).value();
+    //     if (objValue && Array.isArray(objValue)) {
+    //         objValue.forEach((elem, index) => {
+    //             if (checkIfNotNull(elem.id) && elem.id === id) {
+    //                 // this gets called
+    //                 res.jsonp(wrapInDataKey(elem));
+    //             } else if (isLastItem(index, objValue)) {
+    //                 next();
+    //             }
+    //         });
+    //     } else {
+    //         next();
+    //     }
+    // } else {
+    //     NotFoundhandler();
+    // }
 };

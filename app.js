@@ -38,9 +38,9 @@ var _Helpers = require('./services/Helpers');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // const declaration
-var app = (0, _express2.default)();
-/* eslint-disable no-unused-vars */
 
+/* eslint-disable no-unused-vars */
+var app = (0, _express2.default)();
 var JSONAPIError = _jsonapiSerializer2.default.Error;
 
 // middleware
@@ -59,20 +59,27 @@ app.use(function (req, res, next) {
 });
 
 // check header and pass error if not supported.
+// OPTIONS does not pass content-type or accept headers so we make an exception for OPTIONS, and pass all traffic with the OPTIONS method
 app.all('*', function (req, res, next) {
     var contentType = req.header('Content-Type') || '';
     var accept = req.header('Accept') || '';
-    if (contentType.indexOf(_Globals.globalContentType) === -1) {
-        var err = new Error('Unsupported media type, your media type is: ' + contentType + ', it should be ' + _Globals.globalContentType);
-        err.status = 415;
-        next(err);
+    switch (req.method) {
+        case 'OPTIONS':
+            next();
+            break;
+        default:
+            if (contentType.indexOf(_Globals.globalContentType) === -1) {
+                var err = new Error('Unsupported media type, your media type is: ' + contentType + ', it should be ' + _Globals.globalContentType);
+                err.status = 415;
+                next(err);
+            } else if (accept.indexOf(_Globals.globalAccept) === -1) {
+                var _err = new Error('Unacceptable Accept header.');
+                _err.status = 406;
+                next(_err);
+            } else {
+                next();
+            }
     }
-    if (accept.indexOf(_Globals.globalAccept) === -1) {
-        var _err = new Error('Unacceptable Accept header.');
-        _err.status = 406;
-        next(_err);
-    }
-    next();
 });
 app.all('*', function (req, res, next) {
     return (0, _Helpers.isValid)(req, res, next, _Globals.mainRoutes);
