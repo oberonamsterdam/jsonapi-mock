@@ -7,9 +7,9 @@ import express from 'express';
 import http from 'http';
 import jsonapiSerializer from 'jsonapi-serializer';
 import logger from 'morgan';
-import { globalAccept, globalContentType, mainRoutes, port } from './constants/Globals';
-import router from './routes/routes';
-import { isValid, NotFoundhandler, onError } from './services/Helpers';
+import { globalAccept, globalContentType, mainRoutes, port } from './src/constants/Globals';
+import router from './src/routes/routes';
+import { isValid, NotFoundhandler, onError } from './src/services/Helpers';
 
 // const declaration
 const app = express();
