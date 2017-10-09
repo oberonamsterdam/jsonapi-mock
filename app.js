@@ -50,6 +50,8 @@ app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use((0, _cookieParser2.default)());
 
 app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Content-Type', _Globals.globalContentType);
     res.header('Accept', _Globals.globalContentType);
     res.removeHeader('X-Powered-By');
@@ -58,8 +60,8 @@ app.use(function (req, res, next) {
 
 // check header and pass error if not supported.
 app.all('*', function (req, res, next) {
-    var contentType = req.header('Content-Type');
-    var accept = req.header('Accept');
+    var contentType = req.header('Content-Type') || '';
+    var accept = req.header('Accept') || '';
     if (contentType.indexOf(_Globals.globalContentType) === -1) {
         var err = new Error('Unsupported media type, your media type is: ' + contentType + ', it should be ' + _Globals.globalContentType);
         err.status = 415;
