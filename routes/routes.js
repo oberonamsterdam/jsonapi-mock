@@ -16,6 +16,8 @@ var methods = _interopRequireWildcard(_Methods);
 
 var _index = require('../handlers/index');
 
+var _getWithParam = require('../handlers/getWithParam');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -35,10 +37,12 @@ _Globals.mainRoutes.map(function (_ref, i) {
     route && router[methods.post]('/' + route, function (req, res, next) {
         return (0, _index.post)(req, res, next, _Globals.mainRoutes[i]);
     });
-    // route && router[methods.get](`/${route}/:id`, (req, res, next) => getWithParam(req, res, next, mainRoutes[i])); // maybe unify this into one handler?
+    route && router[methods.get]('/' + route + '/:id', function (req, res, next) {
+        return (0, _getWithParam.getWithParam)(req, res, next, _Globals.mainRoutes[i]);
+    }); // maybe unify this into one handler?
     route && router[methods.patch]('/' + route + '/:id', function (req, res, next) {
         return (0, _index.patch)(req, res, next, _Globals.mainRoutes[i]);
-    }); // remove :id param, should be in
+    });
     route && router[methods.remove]('/' + route + '/:id', function (req, res, next) {
         return (0, _index.remove)(req, res, next, _Globals.mainRoutes[i]);
     });

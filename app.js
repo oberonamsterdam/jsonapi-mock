@@ -38,9 +38,9 @@ var _Helpers = require('./services/Helpers');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // const declaration
-
-/* eslint-disable no-unused-vars */
 var app = (0, _express2.default)();
+/* eslint-disable no-unused-vars */
+
 var JSONAPIError = _jsonapiSerializer2.default.Error;
 
 // middleware
@@ -49,6 +49,9 @@ app.use(_bodyParser2.default.json({ type: _Globals.globalContentType }));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use((0, _cookieParser2.default)());
 
+// TODO use
+// https://www.npmjs.com/package/cors
+// For cors
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
