@@ -6,8 +6,6 @@ export const getWithParam = (req, res, next, mainRoute) => {
     const { reference } = mainRoute;
     let foundVal = false;
 
-    console.log('got here');
-
     if (checkIfNotNull(id)) {
         const objValue = db.get(`${reference}.data`).value();
         if (objValue && Array.isArray(objValue)) {
@@ -22,11 +20,9 @@ export const getWithParam = (req, res, next, mainRoute) => {
                 }
             });
         } else {
-            console.log('next and or header sent3');
             next();
         }
     } else {
-        console.log('next and or header sent4');
         NotFoundhandler();
     }
 };

@@ -11,30 +11,31 @@ var _Helpers = require('../services/Helpers');
 
 var getWithParam = exports.getWithParam = function getWithParam(req, res, next, mainRoute) {
     var id = req.params.id;
-    var reference = mainRoute.reference,
-        route = mainRoute.route,
-        data = mainRoute.data;
+    var reference = mainRoute.reference;
 
+    var foundVal = false;
 
-    res.jsonp(data);
+    console.log('got here');
 
-    // if (mainRoutes.includes(route)) {
-    //     next(route);
-    // } else if (checkIfNotNull(id)) {
-    //     const objValue = db.get(`${reference}.data`).value();
-    //     if (objValue && Array.isArray(objValue)) {
-    //         objValue.forEach((elem, index) => {
-    //             if (checkIfNotNull(elem.id) && elem.id === id) {
-    //                 // this gets called
-    //                 res.jsonp(wrapInDataKey(elem));
-    //             } else if (isLastItem(index, objValue)) {
-    //                 next();
-    //             }
-    //         });
-    //     } else {
-    //         next();
-    //     }
-    // } else {
-    //     NotFoundhandler();
-    // }
+    if ((0, _Helpers.checkIfNotNull)(id)) {
+        var objValue = _Globals.db.get(reference + '.data').value();
+        if (objValue && Array.isArray(objValue)) {
+            objValue.forEach(function (elem, index) {
+                if ((0, _Helpers.checkIfNotNull)(elem.id) && elem.id === id) {
+                    // this gets called
+                    foundVal = true;
+                    res.jsonp((0, _Helpers.wrapInDataKey)(elem));
+                }
+                if ((0, _Helpers.isLastItem)(index, objValue) && !foundVal) {
+                    next();
+                }
+            });
+        } else {
+            console.log('next and or header sent3');
+            next();
+        }
+    } else {
+        console.log('next and or header sent4');
+        (0, _Helpers.NotFoundhandler)();
+    }
 };
