@@ -9,7 +9,6 @@ import jsonapiSerializer from 'jsonapi-serializer';
 import logger from 'morgan';
 import { globalAccept, globalContentType, mainRoutes, port } from './constants/Globals';
 import router from './routes/routes';
-import './services/CheckEnvVars';
 import { isValid, NotFoundhandler, onError } from './services/Helpers';
 
 // const declaration
@@ -22,6 +21,9 @@ app.use(bodyParser.json({ type: globalContentType }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// TODO use
+// https://www.npmjs.com/package/cors
+// For cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
