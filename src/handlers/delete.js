@@ -27,7 +27,7 @@ export const remove = (req, res, next, route) => {
             }
             if (removedItemData.length === 0 || !foundRemovedItem) {
                 // TODO respond with a meta object, depending on the request.
-                return res.sendStatus(204);
+                return res.status(204).send();
             }
         } else {
             const err = new Error('Internal server error during remove request');

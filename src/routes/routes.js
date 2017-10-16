@@ -1,8 +1,9 @@
 import express from 'express';
 import { mainRoutes } from '../constants/Globals';
 import * as methods from '../constants/Methods';
-import { get, patch, post, remove } from '../handlers/index';
 import { getWithParam } from '../handlers/getWithParam';
+import { get, patch, post, remove } from '../handlers/index';
+import { options } from '../handlers/options';
 
 // data
 // TODO check if an unnested route contains a key with the routePrefix throw an error if it does.
@@ -16,6 +17,7 @@ mainRoutes.map(({ route }, i) => {
     route && router[methods.get](`/${route}/:id`, (req, res, next) => getWithParam(req, res, next, mainRoutes[i])); // maybe unify this into one handler?
     route && router[methods.patch](`/${route}/:id`, (req, res, next) => patch(req, res, next, mainRoutes[i])); // remove :id param, should be in
     route && router[methods.remove](`/${route}/:id`, (req, res, next) => remove(req, res, next, mainRoutes[i]));
+    route && router[methods.options](`/${route}`, (req, res, next) => options(req, res, next, mainRoutes[i]));
 });
 
 export default router;
