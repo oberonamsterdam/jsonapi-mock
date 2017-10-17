@@ -176,7 +176,7 @@ If you find something that you think should be in the project or want to have a 
 + add links, relationships, included, self and meta support
 + improve project structure ✅
 + write documentation for using .jsonapimockrc config ✅
-+ parameters and operators on routes (comes with query operators and sorting, because I'm cool like that)🚧
++ parameters and operators on routes🚧
 + keep improving docs 🚧
 + add [faker](https://www.npmjs.com/package/faker) flag/possibility for faking data and generating all the dummy data you want
 + add more examples in docs 🚧
