@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 /* eslint-disable no-unused-vars */
@@ -9,10 +10,6 @@ import { globalAccept, globalContentType, mainRoutes, port } from './constants/G
 import router from './routes/routes';
 import './services/CheckEnvVars';
 import { isValid, NotFoundhandler, onError } from './services/Helpers';
-
-#!/usr/;
-bin / env;
-node;
 
 // const declaration
 const app = express();
