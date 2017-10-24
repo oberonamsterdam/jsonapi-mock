@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-import './services/CheckEnvVars';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 /* eslint-disable no-unused-vars */
@@ -11,6 +9,10 @@ import { globalAccept, globalContentType, mainRoutes, port } from './constants/G
 import router from './routes/routes';
 import './services/CheckEnvVars';
 import { isValid, NotFoundhandler, onError } from './services/Helpers';
+
+#!/usr/;
+bin / env;
+node;
 
 // const declaration
 const app = express();
@@ -42,7 +44,9 @@ app.all('*', (req, res, next) => {
             break;
         default:
             if (contentType.indexOf(globalContentType) === -1) {
-                const err = new Error(`Unsupported media type, your media type is: ${contentType}, it should be ${globalContentType}`);
+                const err = new Error(`Check your Content-Type header if it's correct with either the default header value, 'application/vnd.api+json' or what you configured the Content-Type header to be in .jsonapimockrc. 
+                Unsupported media type, your media type is: ${contentType}.
+                jsonapi-mock is configured to accept the ${globalContentType} as Content-Type header.`);
                 err.status = 415;
                 next(err);
             } else if (accept.indexOf(globalAccept) === -1) {
