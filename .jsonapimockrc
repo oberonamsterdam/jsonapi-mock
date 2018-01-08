@@ -1,0 +1,7 @@
+{
+  "port": 3004,
+  "watch": "db.json",
+  "nestedRoutePrefix": "route:"
+  "contentType": 'application/vnd.api+json',
+  "accept": 'application/vnd.api+json'
+}

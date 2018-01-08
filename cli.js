@@ -13,10 +13,6 @@ const conf = require('rc')('jsonapimock', {
     contentType: 'application/vnd.api+json',
     accept: 'application/vnd.api+json',
 });
-// add cat command to display a random cat pic
-// using:
-// https://github.com/substack/picture-tube
-// or other
 program
     .version('1.0.3')
     .option('-p --port [port]', 'Change the port from the default 3004')
@@ -45,18 +41,15 @@ ${e.message}
         return null;
     }
 };
-// TODO don't restart the server if the server itself makes a change to the watchfile
-// TODO this might be impossible / very difficult.
 const spawnNodeServer = () => {
     clear();
     const env = Object.create(process.env);
-    // no spread operators so we have this monstrosity :(
     env.PORT = port;
     env.WATCHFILE = watch;
     env.NESTEDROUTEPREFIX = conf.nestedRoutePrefix;
     env.CONTENTTYPE = conf.contentType;
     env.ACCEPT = conf.accept;
-    const child = spawn(`jsonapi-node-server`, [], { env: env});
+    const child = spawn(`jsonapi-mock-node-server`, [], { env: env });
     child.stdout.on('data', data => console.log(String(data)));
     child.stderr.on('data', data => console.log(String(data)));
     return child;

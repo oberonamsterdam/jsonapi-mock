@@ -1,7 +1,5 @@
-#!/usr/bin/env node
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-/* eslint-disable no-unused-vars */
 import express from 'express';
 import http from 'http';
 import jsonapiSerializer from 'jsonapi-serializer';

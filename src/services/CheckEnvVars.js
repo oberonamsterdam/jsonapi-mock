@@ -1,6 +1,6 @@
 // invoke a new instance of a class and import the instance.
 // not super clean but we get to keep ES6 imports for doing this.
-class AwesomeFunc {
+class CheckEnvVars {
     constructor () {
         const obj = {
             PORT: 3004,
@@ -17,8 +17,12 @@ class AwesomeFunc {
                 }
             });
         } else {
-            process.env = Object.assign(process.env, obj);
+            process.env = {
+                ...process.env,
+                ...obj,
+            };
         }
     }
 }
-export const inst = new AwesomeFunc();
+
+export const inst = new CheckEnvVars();
